@@ -1,0 +1,64 @@
+
+eval
+将字符串str当成有效的表达式来求值并返回计算结果
+https://www.cnblogs.com/dadadechengzi/p/6149930.html
+可动态地修改代码
+a=1
+g={'a':20}
+eval("a+1",g)
+
+
+x = 1
+y = 1
+num1 = eval("x+y")
+print (num1)
+
+def g():    
+    x = 2    
+    y = 2  
+    num3 = eval("x+y")    
+    print (num3)        
+    num2 = eval("x+y",globals())   
+    #num2 = eval("x+y",globals(),locals())    
+    print (num2)
+    
+g()
+
+
+
+全局名字空间存储在一个叫globals()的dict对象中；
+局部名字空间存储在一个叫locals()的dict对象中。
+用print (locals())来查看该函数体内的所有变量名和变量值。
+
+
+--------------------------------------
+getattr用法
+https://www.jianshu.com/p/96a77ff340f8
+https://www.cnblogs.com/caicairui/p/7859490.html
+
+--------------------------------------
+eval用法
+python使用反射机制实例化对象
+https://blog.csdn.net/lom9357bye/article/details/79107711
+--------------------------------------
+exec用法
+http://www.runoob.com/python/python-func-exec.html
+
+
+http://www.pythoner.com/56.html
+
+pyquery 官网api
+https://pythonhosted.org/pyquery/api.html
+
+线程池
+https://www.cnblogs.com/dylan-wu/p/7163823.html
+concurrent.futures
+
+
+globals() 函数会以字典类型返回当前位置的全部全局变量。
+
+--------------------------------------
+__import__
+https://www.jb51.net/article/128957.htm	
+
+

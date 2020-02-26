@@ -1,0 +1,47 @@
+lsof -i tcp:8082
+
+sudo supervisorctl
+restart xindebaby_qa
+
+远程连接密码： 165424
+
+
+机器学习该怎么入门？
+https://www.zhihu.com/question/20691338
+
+https://blog.csdn.net/M_Z_G_Y/article/details/81025661
+
+postgresql教程网站
+https://www.yiibai.com/postgresql/postgresql-datatypes.html
+
+电子书下载
+https://github.com/zouhuigang/book
+https://github.com/apachecn
+
+flask_admin使用
+https://www.jianshu.com/p/d0e0de44a8d0
+https://www.cnblogs.com/lgh344902118/p/7390311.html
+http://www.mamicode.com/info-detail-2139546.html
+https://blog.csdn.net/weixin_34200628/article/details/89644652
+
+WTForms
+http://www.php.cn/python-tutorials-354678.html
+
+Celery
+http://docs.jinkan.org/docs/flask/patterns/celery.html#id2
+https://zhuanlan.zhihu.com/p/22304455
+https://www.cnblogs.com/cwp-bg/p/8759638.html
+https://www.jianshu.com/p/1840035cb510
+
+flask wsgi
+https://zhuanlan.zhihu.com/p/46983059
+
+sqlalchemy
+从SQLAlchemy的“缓存”问题说起
+https://www.jianshu.com/p/c0a8275cce99
+
+flask admin form_ajax_refs
+https://www.cnblogs.com/hellohorld/p/10019515.html
+https://flask-admin.readthedocs.io/en/latest/introduction/
+
+

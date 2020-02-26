@@ -1,0 +1,488 @@
+阿里源
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum clean all
+yum makecache
+yum update
+
+Existing lock /var/run/yum.pid: another copy is running as pid 
+rm -f /var/run/yum.pid
+**************************************************
+yum install net-tools
+yum install epel-release
+yum install net-tools
+yum install yum-fastestmirror
+yum install ntfs-3g
+yum install terminator
+yum install fcitx*
+yum install screenfetch
+yum install mock
+yum install dnf
+yum install cmake
+yum install jq
+yum install flash-plugin
+yum install gcc-c++
+yum install ncurses-devel 
+**************************************************
+# 安装rpm
+yum localinstall xxxxx.rpm
+rpm -Uvh mysql80-community-release-el6-n.noarch.rpm
+# 查找所有的rpm
+rpm -qa | grep -i crosso
+# 卸载rpm
+rpm -e --nodeps crossover-18.0.5-1.i386
+**************************************************
+gcc 8.2
+vim /etc/yum.repos.d/slc6-devtoolset-8.repo
+[devtoolset-8-rh-release]
+name=devtoolset 8 rh release 
+baseurl=https://cbs.centos.org/repos/sclo$releasever-devtoolset-8-rh-release/x86_64/os/ 
+gpgcheck=0 
+enabled=1
+
+yum remove gcc
+yum install devtoolset-8-gcc  devtoolset-8-gcc-c++
+**************************************************
+sudo 权限问题
+gladd is not in the sudoers file.  This incident will be reported
+
+添加sudoers文件的写权限
+/etc/sudoers文件默认是只读的
+chmod u+w /etc/sudoers
+vim /etc/sudoers
+
+找到这行 root ALL=(ALL) ALL,在他下面添加xxx ALL=(ALL) ALL (这里的xxx是你的用户名)
+
+撤销sudoers文件写权限,命令:
+chmod u-w /etc/sudoers
+**************************************************
+teamviewer
+
+教程地址
+https://blog.csdn.net/changgongzhao/article/details/52299314
+
+用rpm 命令安装可能会出现缺少依赖，而导致安装失败
+进入到rpm文件所在目录
+yum install teamviewer_14.1.9025.x86_64.rpm
+
+默认会安装到/opt/teamview里面，并且安装成功会默认启动
+cd /opt/teamviewer/tv_bin/
+
+teamviewer --setup console #设置启动方式为控制台启动  
+teamviewer --daemon restart  #重启teamview服务  
+teamviewer --info #查看teamview信息  
+teamviewer --passwd [PASSWD]   #设置密码  
+teamviewer --help  #查看帮助  
+**************************************************
+Gnome美化
+
+扩展工具安装在文件下
+/home/gladd/.local/share/gnome-shell/extensions
+
+yum install gnome-shell
+yum install gnome-shell-extension*
+
+浏览器安装插件
+https://extensions.gnome.org/
+firefox点击Click here to install browser extension安装插件
+chrome需要chrome-gnome-shell
+点击开关可以安装
+
+# 把主题放置在user/share/themes
+User Themes
+# 应用窗口的菜单项放置在了桌面顶部栏中
+Gnome Global Application Menu
+# 任务栏
+dash-to-panel
+# 屏幕截图工具
+Screenshot Tool 
+# 在顶栏显示应用图标
+TopIcons Plus
+# 在顶栏显示移动盘图标
+Removable Drive Menu
+# 最近查看过的文件
+Recent Items
+# 顶栏显示应用图标，输入法切换的时候特别有用
+TopIcons Plus 
+# 顶栏显示网速
+Netspeed
+# 在顶栏显示当前工作区号
+WorkSpace indicator
+# 剪切版
+Clipboard Indicator
+。。。	。。。	。。。	。。。
+主题网站
+https://www.gnome-look.org/
+
+主题工具 OCS-Store 
+https://www.opendesktop.org/p/1175480/
+下载运行AppImage文件
+chmod a+x *.AppImage
+普通用户：主题安装在/home/gladd/.themes
+root用户：主题安装在/root/.themes
+
+隐藏底部任务栏
+cd /usr/share/gnome-shell/extensions/
+mv window-list@gnome-shell-extensions.gcampax.github.com/ window-list@gnome-shell-extensions.gcampax.github.com.backup
+。。。	。。。	。。。	。。。
+
+。。。	。。。	。。。	。。。
+
+。。。	。。。	。。。	。。。
+
+
+**************************************************
+vim 8.0
+
+wget https://github.com/vim/vim/archive/master.zip 
+unzip master.zip 
+cd vim-master 
+cd src/ 
+./configure 
+make 
+sudo make install 
+**************************************************
+gnome创建快捷方式
+
+vim pycharm.desktop
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=eclipse
+Type=Application
+Terminal=false
+Name[en_US]=eclipse
+Exec=/home/gladd/eclipse/jee-oxygen/eclipse/eclipse
+Comment[en_US]=Eclipse Mars.2
+Comment=Eclipse Mars.2
+GenericName[en_US]=
+Icon=/home/gladd/eclipse/jee-oxygen/eclipse/icon.xpm
+
+把快捷文件放在
+/usr/share/applications
+**************************************************
+chrome
+
+vim /etc/yum.repos.d/google-chrome.repo
+[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+yum install google-chrome-stable --nogpgcheck
+
+插件
+GNOME Shell integration
+Chrono Download Manager
+**************************************************
+nvidia
+
+yum -y install gcc kernel-devel kernel-headers  
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+yum install yum-plugin-fastestmirror
+
+屏蔽默认带有的nouveau
+打开/lib/modprobe.d/dist-blacklist.conf
+将nvidiafb注释掉
+
+然后添加以下语句
+blacklist nouveau  
+options nouveau modeset=0 
+
+重建initramfs image
+mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r).img.bak  
+dracut /boot/initramfs-$(uname -r).img $(uname -r)  
+
+查看nouveau是否已经禁用
+ls mod | grep nouveau  
+
+安装检查显卡程序
+sudo yum install nvidia-detect
+yum -y install kmod-nvidia
+**************************************************
+错误描述
+user mockbuild does not exist - using root
+
+yum install mock
+useradd -s /sbin/nologin mockbuild
+**************************************************
+git配置
+git config --global user.name "gonglongfei"
+git config --global user.email "2239660080@qq.com"
+
+ssh-keygen -t rsa -C "2239660080@qq.com"
+cat /home/gladd/.ssh/id_rsa.pub
+**************************************************
+pycharm_pro激活码
+
+屏蔽掉Pycharm对激活码的验证
+vim /etc/hosts中添加
+0.0.0.0 account.jetbrains.com 
+
+在线获取激活码
+http://idea.lanyus.com/
+**************************************************
+shadowsocks 
+
+vim /etc/yum.repos.d/shadowsocks-qt5.repo
+[librehat-shadowsocks]
+name=Copr repo for shadowsocks owned by librehat
+baseurl=https://copr-be.cloud.fedoraproject.org/results/librehat/shadowsocks/epel-7-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/librehat/shadowsocks/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+yum install shadowsocks-qt5
+**************************************************
+sublimt text3
+
+sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+sudo yum-config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+sudo yum install sublime-text
+**************************************************
+openvpn
+
+yum install openvpn
+复制文件到/etc/openvpn
+运行
+openvpn glf.ovpn
+**************************************************
+anaconda
+
+清华镜像
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --set show_channel_urls yes
+
+conda --version
+conda info --envs
+conda create --name aaa python=2.7
+conda activate aaa
+deactivate aaa
+conda remove --name aaa --al
+
+conda list
+conda install numpy
+anaconda search -t conda XXXXX
+anaconda show XXXXX
+**************************************************
+查看开机时间
+systemd-analyze blame|head
+systemd-analyze blame
+**************************************************
+显示桌面快捷键
+Hide all normal windows
+**************************************************
+mysql
+
+rpm -Uvh mysql80-community-release-el6-n.noarch.rpm
+修改该源文件的enable=1
+rm -rf /var/lib/mysql 删除这个文件
+yum remove mysql*   卸载相关的mysql
+yum install mysql-community-server
+
+systemctl start  mysqld.service
+systemctl status mysqld.service
+grep "password" /var/log/mysqld.log
+
+随机密码位置
+/var/log/mysql/mysql.log
+修改默认密码
+ALTER user 'root'@'localhost' IDENTIFIED BY 'Glf1327__';
+
+创建新用户
+use mysql;
+create user gladd@'localhost' identified by '123456';
+FLUSH PRIVILEGES;
+**************************************************
+charles
+
+vim /etc/yum.repos.d/Charles.repo
+[charlesproxy]
+name=Charles Proxy Repository
+baseurl=https://www.charlesproxy.com/packages/yum
+gpgkey=https://www.charlesproxy.com/packages/yum/PublicKey
+
+yum install charles-proxy
+**************************************************
+navicat
+
+https://www.navicat.com.cn/download/navicat-premium
+**************************************************
+postman
+
+https://www.getpostman.com/downloads/
+**************************************************
+Typora
+
+https://www.typora.io/#download
+**************************************************
+flashplayer
+
+https://get.adobe.com/cn/flashplayer/
+**************************************************
+升级内核
+首先导入public key
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+
+列出可用的内核相关包
+yum --disablerepo="*" --enablerepo="elrepo-kernel" list availableLoaded plugins: fastestmirror, langpacks
+
+如果要安装ml内核，使用如下命令：
+yum --enablerepo=elrepo-kernel -y install kernel-ml				基于主线稳定分支, 使用这个
+如果要安装lt内核，使用如下命令：
+yum --enablerepo=elrepo-kernel -y install kernel-lt
+
+修改grub.conf文件
+内核升级完毕后，需要我们修改内核的启动顺序，默认启动的顺序应该为1,升级以后内核是往前面插入为0，打开并编辑 /etc/default/grub并设置GRUB_DEFAULT=0。一般新安装的内核在第一个位置，所以设置default=0，意思是 GRUB 初始化页面的第一个内核将作为默认内核
+
+grub2-mkconfig -o /boot/grub2/grub.cfg
+reboot
+
+删除内核
+# 查看内核
+rpm -qa | grep kernel
+# 删除内核
+yum remove kernel-3.10.0-693.el7.x86_64
+**************************************************
+smplayer
+
+yum -y install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+yum install smplayer
+**************************************************
+Adobe Flash Player
+
+wget http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+rpm -ivh adobe-release-x86_64-1.0-1.noarch.rpm
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+yum install firefox.x86_64 flash-plugin
+**************************************************
+sudo alien --to-rpm --scripts netease-cloud-music_1.1.0_amd64_ubuntu.deb 
+**************************************************
+crossover
+
+官网下载
+chmod 755 crossover.bin
+./crossover.bin
+
+安装以后用root权限执行
+**************************************************
+/usr/lib/libstdc++.so.6: version `CXXABI_1.3.9' not found
+
+ 源码编译升级安装了gcc后，编译程序或运行其它程序时，有时会出现类似
+1. 检查动态库
+strings /usr/lib64/libstdc++.so.6 | grep GLIBC
+2. 查找编译gcc时生成的最新动态库
+find / -name "libstdc++.so*"
+3. 将上面的最新动态库libstdc++.so.6.0.21复制到/usr/lib64目录下
+cp /home/gladd/anaconda2/x86_64-conda_cos6-linux-gnu/sysroot/lib/libstdc++.so.6.0.25 /usr/lib64
+4. cd /usr/lib64
+5. 删除原来软连接
+rm -rf libstdc++.so.6
+6. 将默认库的软连接指向最新动态库
+ln -s libstdc++.so.6.0.21 libstdc++.so.6
+7. 重新运行以下命令检查动态库
+strings /usr/lib64/libstdc++.so.6 | grep GLIBC
+**************************************************
+python3
+
+yum install python36
+python36
+**************************************************
+jumpserver
+
+jumpserver的公钥和私钥考到.ssh文件目录下
+ssh -p65376 gonglongfei@jumpserver.51smart.com
+ssh -i /home/gladd/.ssh/jumpserver gonglongfei@jumpserver.51smart.com -p 65376
+**************************************************
+scp
+
+https://www.cnblogs.com/webnote/p/5877920.html
+scp local_file remote_username@remote_ip:remote_folder
+**************************************************
+docker ce
+
+yum -y install yum-utils
+添加源
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install docker-ce
+**************************************************
+dash-to-panel
+
+git clone https://github.com/home-sweet-gnome/dash-to-panel.git
+make install
+安装完成后，重新启动Gnome Shell（Alt + F2，然后输入r，然后按Enter键），以便在Gnome Tweaks/已安装的扩展中显示扩展名，并从那里启用它。
+**************************************************
+pycahrm不能输入中文
+
+在pycharm.sh脚本的如下行（大约在201行）：
+
+# ---------------------------------------------------------------------
+# Run the IDE.
+# ---------------------------------------------------------------------
+ IFS="$(printf '\n\t')"
+前增加以下三行配置即可
+：
+
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+**************************************************
+python虚拟环境
+# 1.安装
+pip install virtualenv
+pip install virtualenvwrapper
+
+# 2.打开~/.bashrc文件，并添加如下：
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
+
+# 列出所有虚拟环境 
+workon
+# 创建基本环境 
+mkvirtualenv --python=python2.7 p27 或
+mkvirtualenv -p python3.7 p37
+
+# 激活环境 
+workon [环境名]
+# 退出环境 
+deactivate [环境名]
+# 删除环境 
+rmvirtualenv [环境名]
+
+
+yum install python-virtualenv
+easy_install virtualenvwrapper
+
+
+**************************************************
+**************************************************
+**************************************************
+**************************************************
+**************************************************
+**************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

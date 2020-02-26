@@ -1,0 +1,45 @@
+<!DOCTYPE <html>
+<html>
+<head>
+    <title>The current time</title>
+    <script type="text/javascript" src="/static/js/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        function myFirst() {
+            $.ajax({
+                url: '/home/',
+                type: 'post',
+                dataType: 'json',
+                data: {'status': 1, 'id': 10001},
+                success: function (res) {
+                    alert('删除成功');
+                    $('.change_stauts').text("已删除").attr("disabled", true);
+                },
+                error: function (res) {
+                    alert('删除失败，请重试！');
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<p>name = {{ name | name1 }}</p>
+<p>age = {{ age |name2 }}</p>
+<p>home = {{ home }}</p>
+<p>number = {{ number }}</p>
+<!--  字典用 .-->
+<p>info.a = {{ info.a }}</p>
+<p>age = {{ age }}</p>
+<p>score = {{ score }}</p>
+<p>number[0] + number[score] = {{ number[0] + number[score] }}</p>
+<p>{{ 'hello' + 'word' }}</p>
+<button onclick="myFirst()" class="change_stauts">删除</button>
+<!--if判断条件-->
+{% if zero == 0 %}
+    <button onclick="myFirst()">000</button>
+{% else %}
+    <button onclick="myFirst()">111</button>
+{% endif %}
+
+</body>
+</html>

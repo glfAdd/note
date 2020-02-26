@@ -1,0 +1,83 @@
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 换国内源
+1. /etc/apt/sources.list 内容替换为
+deb https://mirrors.aliyun.com/debian  stable main contrib non-free
+deb https://mirrors.aliyun.com/debian  stable-updates main contrib non-free
+
+2. 然后更新
+apt-get update
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 环境依赖
+apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 查看ip
+ip address
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 安装ssh
+1. apt install openssh-server
+
+2. 修改配置文件 /etc/ssh/sshd_config
+PermitRootLogin yes
+PasswordAuthentication yes
+
+3. systemctl start ssh.service
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - apt-get 命令
+卸载（删除配置文件）
+apt-get purge xxx
+
+更新所有已安装的软件
+apt-get upgrade
+
+更新系统
+apt-get dist-upgrade
+
+清除已经卸载软件的.deb包
+apt-get autoclean
+
+清除所有的.deb包
+apt-get clean
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - zsh
+1. apt-get install zsh
+
+2. 你需要将zsh替换为你的默认shell
+chsh -s /bin/zsh
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - iftop
+
+中间的<= =>这两个左右箭头，表示的是流量的方向。
+
+TX：发送流量
+RX：接收流量
+TOTAL：总流量
+Cumm：运行iftop到目前时间的总流量
+peak：流量峰值
+rates：分别表示过去 2s 10s 40s 的平均流量
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ufw 防火墙
+https://cloud.tencent.com/developer/article/1360746
+
+apt-get install ufw
+
+设置初始状态
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+允许SSH连接
+ufw allow ssh 或 ufw allow 22
+
+启用ufw
+sudo ufw enable
+
+命令
+ufw status
+ufw enable          开启
+ufw disable         关闭
+ufw allow 22/tcp            开启指定tcp或者udp端口
+ufw allow 445               同时开启tcp与udp端口
+ufw delete allow 53         删除53端口
+allow/deny 20/tcp           拒绝指定tcp或者udp端口
+allow/deny 20/udp
+sudo ufw allow in on enp0s5 to any port 3306        设置服务器网卡eth0的接口3306
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+

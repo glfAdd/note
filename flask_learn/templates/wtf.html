@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST">
+    {#设置csrf_token, 这是个隐藏字段#}
+    {{ form.csrf_token }}
+
+    {#当筛选器错误的时候显示错误信息#}
+    {{ form.user_name.label }}
+    <p>{{ form.user_name }}</p>
+    {#遍历错误#}
+    {% for msg in form.user_name.errors %}
+        <p>{{ msg }}</p>
+    {% endfor %}
+
+    {{ form.password1.label }}
+    <p>{{ form.password1 }}</p>
+    {% for msg in form.password1.errors %}
+        <p>{{ msg }}</p>
+    {% endfor %}
+
+    {{ form.password2.label }}
+    <p>{{ form.password2 }}</p>
+    {% for msg in form.password2.errors %}
+        <p>{{ msg }}</p>
+    {% endfor %}
+
+    <p>{{ form.submit() }}</p>
+</form>
+</body>
+</html>
