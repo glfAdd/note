@@ -933,3 +933,13 @@ IF NOT EXISTS创建表的时候使用
 
 UPDATE orders SET first_user =( CASE WHEN first_user IS NULL THEN first_user = 10 ELSE first_user END ), second_user =( CASE WHEN second_user IS NULL THEN first_user = 10 ELSE second_user END );
 
+```
+ sql_update_user = """
+    UPDATE tmp_hcimaster SET 
+    second_check_userFK = ( CASE WHEN second_check_userFK = 0 AND first_check_userFK <> 0 THEN 4 ELSE second_check_userFK END ), 
+    first_check_userFK = ( CASE WHEN first_check_userFK = 0 THEN 4 ELSE first_check_userFK END ) 
+    WHERE 
+    first_check_userFK <> 4 AND second_check_userFK <> 4 AND ( first_check_userFK = 0 OR second_check_userFK = 0 ) 
+    LIMIT 1
+```
+
