@@ -1,6 +1,16 @@
 """ ============================ 安装
 yum install supervisor
 apt-get install supervisor
+
+
+supervisor配置文件叫supervisord.conf，supervisord和supervisorctl共用一个配置文件，
+如果应用启动时，没有使用-c选项，应用会按照指定顺序寻找supervisord.conf文件：
+$CWD/supervisord.conf
+$CWD/etc/supervisord.conf
+/etc/supervisord.conf
+/etc/supervisor/supervisord.conf (since Supervisor 3.3.0)
+../etc/supervisord.conf (Relative to the executable)
+../supervisord.conf (Relative to the executable)
 """
 
 """ ============================ 命令
