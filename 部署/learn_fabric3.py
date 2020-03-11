@@ -1,6 +1,8 @@
 """ ============================ 参考
 https://www.cnblogs.com/xiao-apple36/p/9124292.html
 
+不推荐使用
+
 安装
     pip intall fabric3
 

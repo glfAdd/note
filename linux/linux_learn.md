@@ -146,6 +146,49 @@ fg 把当前终端后台后台运行的拿到前台运行
 在目标机器的 〜/.ssh/authorized_keys 中添加自己的ssh公钥
 ```
 
+##### ssh 简化输入IP
+
+```
+vim ~/.ssh/config
+
+Host github-A
+    HostName github.com
+    User git
+    IdentityFile /Users/xxx/.ssh/id_rsa_A
+    IdentitiesOnly yes
+Host github-B
+    HostName github.com
+    User git
+    IdentityFile /Users/xxx/.ssh/id_rsa_B
+    IdentitiesOnly yes
+
+Host: 名字随便起
+Hostname: ip
+User: 用户名
+Port: 端口
+IdentityFile: ssh私钥路径
+IdentitiesOnly yes就可以
+```
+
+##### zsh 
+
+```
+# debian安装
+apt-get install zsh
+# mac安装
+brew install zsh
+
+# 查看当前环境shell
+echo $SHELL
+# 查看系统自带哪些shell
+cat /etc/shells
+# 将zsh设置为默认的shell
+chsh -s /bin/zsh
+
+# 安装oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
 
 
 

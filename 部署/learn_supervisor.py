@@ -305,3 +305,13 @@ loglevel = 'error'
 
 5. 使用 supervisorctl 命令进入 supervisor 管理界面
 """
+
+
+""" ============================ 实际配置
+[program:hospital_alias_clean]
+directory=/home/projects/hospital_alias_clean
+command=/root/.virtualenvs/envHciPython3.6.6/bin/python /root/.virtualenvs/envHciPython3.6.6/bin/gunicorn -c config/gunicorn.conf application:app
+autostart=true
+autorestart=true
+"""
+

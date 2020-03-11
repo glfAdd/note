@@ -40,3 +40,13 @@ jupyter kernelspec remove p27
 python -m ipykernel install --name p27
 ```
 
+##### 插件管理工具Nbextensions
+
+```
+pip install jupyter_contrib_nbextensions
+jupyter contrib nbextension install --user
+
+插件
+Code prettify 对代码进行格式化 ctrl + L
+```
+

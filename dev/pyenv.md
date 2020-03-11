@@ -153,6 +153,28 @@ brew install postgresql
 pip install psycopg
 ```
 
+##### pyltp 安装失败
+
+```
+error: $MACOSX_DEPLOYMENT_TARGET mismatch: now "10.12" but "10.15" during configure
+
+切换到虚拟环境
+$ git clone https://github.com/HIT-SCIR/pyltp
+$ cd pyltp
+$ git submodule init
+$ git submodule update
+vim setup.py 修改文件121行
+os.environ['MACOSX_DEPLOYMENT_TARGET'] = '10.12'
+修改为后问题解决
+os.environ['MACOSX_DEPLOYMENT_TARGET'] = '10.14' 
+$ python setup.py install
+
+
+$ MACOSX_DEPLOYMENT_TARGET=10.7 python setup.py install
+
+
+```
+
 
 
 

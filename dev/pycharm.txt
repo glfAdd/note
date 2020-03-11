@@ -42,7 +42,9 @@ export XMODIFIERS=@im=fcitx
 显示py文件的class 和 method
 
 工具栏窗口顶部那个齿轮有个 show member
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - dash 插件
+Preferences -> Plugins -> Browse repositories and search for "Dash".
+默认快捷方式是Cmd-Shift-D（Mac OS X）或Ctrl-Shift-D（Windows，Linux）
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
