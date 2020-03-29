@@ -32,6 +32,9 @@ apt-get autoclean
 
 清除所有的.deb包
 apt-get clean
+
+更新系统
+apt-get upgrade
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - zsh
 1. apt-get install zsh
 

@@ -1,19 +1,38 @@
 """ ============================ 参考
 https://www.zhihu.com/question/63477745
+https://zhuanlan.zhihu.com/p/27258289
 """
 
 import asyncio
 
-""" ============================ Coroutine 
+""" ============================ Coroutine 对象
 协程对象
+Coroutine类也继承了Awaitable，而且实现了send，throw和close方法
 
 class Coroutine(Awaitable):
-    pass
+    __slots__ = ()
+
+    @abstractmethod
+    def send(self, value):
+        ...
+
+    @abstractmethod
+    def throw(self, typ, val=None, tb=None):
+        ...
+
+    def close(self):
+        ...
+        
+    @classmethod
+    def __subclasshook__(cls, C):
+        if cls is Coroutine:
+            return _check_methods(C, '__await__', 'send', 'throw', 'close')
+        return NotImplemented
 """
 
-""" ============================ Awaitable
+""" ============================ Awaitable 对象
 1. 只要一个类实现了__await__方法，那么通过它构造出来的实例就是一个Awaitable
-2. 用async修饰的函数，它返回的是一个Coroutine对象, Coroutine继承于Awaitable
+2. 用async修饰的函数，它返回的是一个Coroutine对象
 
 
 class Awaitable(metaclass=ABCMeta):

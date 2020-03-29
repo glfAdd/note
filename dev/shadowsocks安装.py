@@ -1,7 +1,14 @@
+""" ============================ Vultr
+Vultr
+官网
+https://my.vultr.com/
+
+
+购买教程
+https://www.vultrcn.com/1.html
+"""
+
 """ ============================ centos 服务端安装
-
-
-
 wget –no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh
 chmod +x shadowsocks.sh
 ./shadowsocks.sh 2>&1 | tee shadowsocks.log
@@ -30,11 +37,13 @@ chmod +x shadowsocks.sh
     单个账号
     {
         "server": "0.0.0.0",
-        "server_port": 1234,
-        "password": "zheshimima",
+        "server_port": 10469,
+        "local_address": "127.0.0.1",
+        "local_port": 1080,
+        "password": "glf13261326",
         "timeout": 300,
         "method": "aes-256-cfb",
-        "fast_open": true,
+        "fast_open": false,
         "workers": 1
     }
     
@@ -64,8 +73,9 @@ chmod +x shadowsocks.sh
     }
 
 
-3. 启动
+3. 命令
 ssserver -c /etc/shadowsocks.json -d start
+ssserver -c /etc/shadowsocks.json -d stop
 
 4. 报错信息
 INFO: loading config from /etc/shadowsocks.json
@@ -96,10 +106,18 @@ Traceback (most recent call last):
 AttributeError: /lib/x86_64-linux-gnu/libcrypto.so.1.1: undefined symbol: EVP_CIPHER_CTX_cleanup
 解决办法
 	1. vim /usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py
-	2. 将 libcrypto.EVP_CIPHER_CTX_cleanup.argtypes = (c_void_p,) 改为 libcrypto.EVP_CIPHER_CTX_reset.argtypes = (c_void_p,)
+	   或
+	   vim /usr/local/lib/python3.7/dist-packages/shadowsocks/crypto/openssl.py
+	2. 将所有 
+	   libcrypto.EVP_CIPHER_CTX_cleanup.argtypes = (c_void_p,) 
+	   改为 
+	   libcrypto.EVP_CIPHER_CTX_reset.argtypes = (c_void_p,)
 	
 5. 加入开机自启
 echo "ssserver -c /etc/shadowsocks.json -d start" >> /etc/rc.d/rc.local
+
+6. 日志路径
+/var/log/shadowsocks.log
 """
 
 """ ============================ 命令
