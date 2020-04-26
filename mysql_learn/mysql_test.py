@@ -14,7 +14,7 @@ res = {
         'pnr': 'NNNNNN',
         'currency': 'CNY',
     }
-}
+    pymysql}
 sql_select = "select * from t_reserve_order_split_hold where reserve_order_split_id=759394"
 r_select = m.query(sql_select)[0]
 r_select['pnr'] = res['body']['pnr']

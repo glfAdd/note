@@ -11,10 +11,6 @@ $ pylint --version
 $ pylint --persistent=n --generate-rcfile > pylint.conf
 检测单个文件
 $ pylint --rcfile=pylint.conf abc.py
-
-
-
-
 ```
 
 ```
@@ -33,12 +29,16 @@ program：是python安装路径下的Scripts路径
 Arguments:--reports=n --disable=C0103 $FilePath$  （最后必须以$FilePath$结尾）
 working directory：$FileDir$（必须是这个）
 output filters：$FILE_PATH$:$LINE$:
+```
 
+##### 命令行命令
 
-
-
-
-
-
+```
+pylint pylint_example.py
+显示统计报告
+pylint -r y pylint_example.py
+不显示某个类型的信息
+pylint -r y pylint_example.py --disable=C
+pylint -r y pylint_example.py --disable=C0301
 ```
 

@@ -1313,7 +1313,7 @@
       <Type>btree</Type>
     </index>
     <index id="315" parent="282" name="hciFK">
-      <Comment>外键，对应主名的自增 idList </Comment>
+      <Comment>外键，对应主名的自增 idList</Comment>
       <ColNames>hciFK</ColNames>
       <Type>btree</Type>
     </index>

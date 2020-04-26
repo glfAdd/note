@@ -12,6 +12,14 @@ LABEL=xxxxxx none ntfs rw,auto,nobrowse
 
 Command+Shift+G
 /Volumes
+
+方式 2
+先查看挂载信息
+sudo mount
+卸载
+$ sudo umount /Volumes/新加卷
+挂载
+sudo mount -t ntfs -o rw,auto,nobrowse /dev/disk2s1 /data/mydisk/
 ```
 
 ##### Mac 发热

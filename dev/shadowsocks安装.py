@@ -9,11 +9,40 @@ https://www.vultrcn.com/1.html
 """
 
 """ ============================ centos 服务端安装
+参考
+https://www.52soft.cc/jishu/2776.html
+
+
+
 wget –no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh
 chmod +x shadowsocks.sh
+yum install gcc-c++
 ./shadowsocks.sh 2>&1 | tee shadowsocks.log
 然后根据提示选择
+命令
 /usr/bin/python /usr/bin/ssserver -c /etc/shadowsocks.json -d start
+./shadowsocks.sh uninstall  //卸载
+
+vi /etc/shadowsocks.json //修改参数
+/etc/init.d/shadowsocks start //启动
+/etc/init.d/shadowsocks stop //停止
+/etc/init.d/shadowsocks restart //重启
+/etc/init.d/shadowsocks status //查看状态
+
+
+配置文件
+vi /etc/shadowsocks.json //修改参数
+
+
+
+
+
+
+
+
+
+安装错误: [Error] libsodium install failed!
+解决办法:   
 """
 
 """ ============================ debian 服务端安装
@@ -40,7 +69,7 @@ chmod +x shadowsocks.sh
         "server_port": 10469,
         "local_address": "127.0.0.1",
         "local_port": 1080,
-        "password": "glf13261326",
+        "password": "12e",
         "timeout": 300,
         "method": "aes-256-cfb",
         "fast_open": false,

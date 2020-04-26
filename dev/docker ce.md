@@ -21,22 +21,46 @@
 }
 ```
 
+##### debian
+
+```
+第1步：卸载旧软件
+apt-get remove docker docker-engine docker.io containerd runc
+
+第2步：更新软件仓库索引
+apt-get update
+
+第3步：安装相关工具
+apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
+
+第4步：安装GPG密钥
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+
+第5步：添加Docker仓库
+修改/etc/apt/sources.list文件，根据自己的操作系统类型选择Docker官方仓库。
+#Debian 9 使用这个Docker仓库
+deb https://download.docker.com/linux/debian stretch stable
+#Ubuntu 16.04 使用这个Docker仓库
+deb https://download.docker.com/linux/ubuntu xenial stable
+
+第6步：更新软件仓库索引
+apt-get update
+
+第7步：安装Docker CE
+apt-get install docker-ce docker-ce-cli containerd.io
+```
+
 ##### mac
 
 ```
 官网下载
 ```
-<<<<<<< HEAD
-=======
 
-##### 国内源
->>>>>>> 5351787f3ce8d318b213f17c774c974efc0ec610
 
 ##### 国内源
 
 ```
 推荐使用阿里加速源
-```
 {
   "registry-mirrors" : [
     "http://ovfftd6p.mirror.aliyuncs.com",
@@ -51,6 +75,12 @@
   "debug" : true,
   "experimental" : true
 }
+```
+
+##### 镜像网站
+
+```
+https://hub.docker.com/
 ```
 
 # Docker
@@ -89,6 +119,8 @@ docker stop container_name
 # 参数 -t：关闭容器的限时，如果超时未能关闭则用kill强制关闭，默认值10s，这个时间用于容器的自己保存状态 
 docker stop -t=60 容器ID或容器名
 docker kill 容器ID或容器名
+# 搜索
+docker starch jumpserver
 ```
 
 ##### mysql
@@ -96,10 +128,10 @@ docker kill 容器ID或容器名
 ```python
 docker pull mysql
 docker pull mysql:5.7.25
-
 # 创建并启动一个MySQL容器
 docker run --name mysql7 -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:5.7.25
 docker run --name mysql8 -e MYSQL_ROOT_PASSWORD=123456 -p 3307:3307 -d mysql
+
 # 进入容器
 docker exec -it mysql sh
 # 登录
@@ -118,7 +150,7 @@ https://github.com/luin/medis
 
 ##### zookeerper
 
-```pyton
+```
 docker pull zookeeper
 docker run --privileged=true -d --name zookeeper --publish 2181:2181  -d zookeeper:latest
 ```
@@ -153,5 +185,17 @@ docker run -d --name rabbitmq --publish 5671:5671 --publish 5672:5672 --publish 
 docker run -d --hostname my-rabbit --name rabbit -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin -p 15672:15672 -p 5672:5672 -p 25672:25672 -p 61613:61613 -p 1883:1883 rabbitmq:management
 
 http://宿主机IP:15672，默认创建了一个 guest 用户，密码也是 guest
+```
+
+##### jumpserver
+
+```
+参考
+https://www.jianshu.com/p/1475ebde6297
+
+docker run --name jms_all -d -p 8030:80 -p 8020:2222 jumpserver/jms_all:latest
+8030的意思是Jumpserver 管理的客户端  8020代表的是你堡垒机的端口号
+访问:  http://127.0.0.1:8030/users/login/?next=/
+默认帐号： Admin  密码：admin
 ```
 
