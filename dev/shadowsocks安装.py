@@ -13,6 +13,14 @@ https://www.vultrcn.com/1.html
 https://www.52soft.cc/jishu/2776.html
 
 
+安装失败
+[Error] libsodium install failed!
+解决问题
+yum install epel-release -y
+yum install libsodium -y
+yum install make -y
+
+
 
 wget –no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh
 chmod +x shadowsocks.sh
@@ -32,13 +40,6 @@ vi /etc/shadowsocks.json //修改参数
 
 配置文件
 vi /etc/shadowsocks.json //修改参数
-
-
-
-
-
-
-
 
 
 安装错误: [Error] libsodium install failed!
