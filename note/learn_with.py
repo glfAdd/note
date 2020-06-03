@@ -59,7 +59,7 @@ with getInstance() as dbManagerIns:
 
 import threading
 
-lock = threading.local
+lock = threading.RLock()
 number = 0
 with lock:
     print(1)

@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcf3d214-4105-4f4e-be90-4273760c64c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../mysql_learn/learn_pymysql.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dev/kcptun.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mysql_learn/python连接库.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis_learn/常用库.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis_learn/集群.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dev/kcptun.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../dev/kcptun.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learn_with.py" beforeDir="false" afterPath="$PROJECT_DIR$/learn_with.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,6 +19,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>scp</find>
+      <find>py</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -26,10 +33,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="240" />
-    <option name="y" value="149" />
+    <option name="x" value="-1440" />
+    <option name="y" value="203" />
     <option name="width" value="1440" />
-    <option name="height" value="758" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -73,16 +80,17 @@
       <workItem from="1586617794161" duration="310000" />
       <workItem from="1586631617249" duration="22000" />
       <workItem from="1588147773294" duration="11000" />
+      <workItem from="1590398514120" duration="82000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="343000" />
+    <option name="totallyTimeSpent" value="425000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1010" extended-state="6" />
+    <frame x="-1440" y="203" width="1440" height="877" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12992546" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13161659" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
