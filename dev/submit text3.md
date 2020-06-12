@@ -1,4 +1,4 @@
-##### Package Contro
+##### Package Control
 
 ```python
 # 1.官网
@@ -23,7 +23,7 @@ https://packagecontrol.io/Package%20Control.sublime-package
 
 ```python
 函数跳转，我的电脑上是Alt+点击 函数名称，会跳转到相应的函数
- DocBlockr
+DocBlockr
 ```
 
 ##### DocBlockr
@@ -77,5 +77,23 @@ Tools -> Build System -> New Build System
 
 ```python
 Ctrl + B			运行
+```
+
+##### json格式化
+
+```
+pretty json
+
+github地址: https://github.com/dzhibas/SublimePrettyJson
+
+格式化快捷键: 
+ctrl+alt+j 格式化json字符串
+ctrl+alt+m 压缩json字符串
+
+教程
+http://www.mamicode.com/info-detail-245317.html
+
+配置文件:
+默认的配置文件不能修改, 可以修改用户的配置文件
 ```
 
