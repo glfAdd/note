@@ -277,6 +277,7 @@ https://www.jianshu.com/p/535c22ea6e28
 2. 管理应用需要设置配置文件. include导入从这个目录下导入应用的配置文件
 [include]
 files = /etc/supervisor/conf.d/*.conf
+files = /etc/supervisord.d/*.conf
 
 
 3. 在此目录下创建配置文件文件 myapp.conf

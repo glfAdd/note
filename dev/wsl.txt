@@ -16,6 +16,26 @@ deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main con
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - wsl 命令
 wsl --shutdown          关闭
 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - oh-my-zsh
+证书问题
+apt-get install ca-certificates
+安装zsh
+apt-get install zsh
+安装oh-my-zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+安装字体
+apt-get install fonts-powerline
+
+设置主题
+https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+vim ~/.zshrc
+ZSH_THEME="agnoster"
+
+重新载入
+source ~/.zshrc
+
+
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ifconfig
 没有ifconfig命令
 apt-age install net-tools
@@ -64,6 +84,9 @@ sudo apt-get install python-dev default-libmysqlclient-dev # Debian / Ubuntu
 sudo yum install python-devel mysql-devel # Red Hat / CentOS
 brew install mysql-client # macOS (Homebrew)
 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - oh-my-zsh
+***问题***
+curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to raw.github.com:443
 
 
 

@@ -1,3 +1,117 @@
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - bois 升级
+官网下载地址
+https://newsupport.lenovo.com.cn/driveList.html?fromsource=driveList&selname=%E6%8B%AF%E6%95%91%E8%80%85R7000%202020
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - windows 系统包管理工具
+安装包管理器 scoop
+
+参考: https://www.jianshu.com/p/50993df76b1c
+命令安装在: C:\Users\lg\scoop\apps
+
+1. 在 PowerShell 中输入下面内容，保证允许本地脚本的执行：
+set-executionpolicy remotesigned -scope currentuser
+
+2. 执行下面的命令安装 Scoop：
+iwr -useb get.scoop.sh | iex
+
+3. 命令
+scoop search firefox
+    search 	搜索软件名
+    update 	更新软件
+    status 	查看软件状态
+    uninstall 	卸载软件
+    info 	查看软件详情
+    home 	打开软件主页
+
+scoop list                  显示已安装软件
+scoop status                显示可更新的软件
+scoop search <app>          查找软件
+scoop info <app>            显示软件信息（含必要配置说明）
+scoop cleanup *             清理所有旧版软件
+scoop cleanup <app>         清理指定软件
+scoop cleanup -k *  # 或 scoop cleanup --cache *     清理过期的安装包
+
+# 更新scoop, 更新指定软件
+scoop update
+scoop update <app>
+scoop update vscode-insiders -kf    # 更新 nightly 版本
+
+4. scoop使用aria2进行多线程下载以加速下载：
+scoop install aria2
+aria2 配置文件路径: c：/user/xxx/.config/scoop/config.json
+{
+    "lastupdate":  "2020-06-16T23:58:19.3002510+08:00",
+    "SCOOP_REPO":  "https://github.com/lukesampson/scoop",
+    "SCOOP_BRANCH":  "master",
+    "aria2-max-connection-per-server":  16,
+    "aria2-split":  16,
+    "aria2-min-split-size":  "2M"
+}
+配置命令
+scoop config aria2-max-connection-per-server 16
+scoop config aria2-split 16
+scoop config aria2-min-split-size 1M
+
+5. 添加仓库
+scoop bucket add extras
+scoop bucket add scoopbucket https://github.com/yuanying1199/scoopbucket
+scoop bucket add versions
+
+6. 常用软件
+scoop install sudo
+scoop install git 7zip openssh
+scoop install aria2
+scoop install ffmpeg
+scoop install nodejs
+scoop install python
+
+
+
+***问题***
+使用“1”个参数调用“DownloadString”时发生异常:“未能解析此远程名称: 'raw.githubusercontent.com'”
+所在位置 行:1 字符: 1
++ iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : WebException
+
+***办法***
+windows hosts 文件路径
+    C:\Windows\System32\drivers\etc
+
+在 hosts 文件里面添加
+    151.101.76.133 raw.githubusercontent.com
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 颜色管理工具
+# 安装微软官方颜色工具
+scoop install colortool
+
+# 查看已安装主题
+colortool -s
+
+# 设置主题
+colortool OneHalfDark
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 安装字体
+解决powershell乱码
+https://github.com/powerline/fonts
+
+进入目录以后执行
+    .\install.ps1
+
+
+符号字体官网
+https://www.nerdfonts.com/
+
+# 添加 nerd fonts 源
+scoop bucket add 'nerd-fonts'
+# 安装 nerd fonts
+scoop install FantasqueSansMono-NF
+sudo scoop install FantasqueSansMono-NF
+
+
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - git 中文显示乱码
 系统环境变量直接增加
 LESSCHARSET=utf-8
@@ -12,9 +126,6 @@ tool -> shell path -> powershell.exe
 字体美化
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - wox
-快速启动
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - wox
 教程 https://sspai.com/post/33460
 
 1. 直接输入数字当做计算器使用
@@ -25,9 +136,58 @@ tool -> shell path -> powershell.exe
 4. 弹出 USB 设备
     安装 wpm install Remove USB
     触发命令 reu
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - wox
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - wox
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - wox
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - wox
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Microsoft Stroe
+quickLook               空格浏览文件
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - oh-my-posh
+https://github.com/JanDeDobbeleer/oh-my-posh
+
+1. 打开 PowerShell 安装
+
+2. 安装 ConEmu
+使用: choco install ConEmu
+或使用: sudo scoop install conemu
+
+2. 安装 posh-git 和 oh-my-posh 这两个模块
+    Install-Module posh-git -Scope CurrentUser
+    Install-Module oh-my-posh -Scope CurrentUser
+
+3. 新增（或修改）你的 PowerShell 配置文件
+    # 如果之前没有配置文件，就新建一个 PowerShell 配置文件
+    if (!(Test-Path -Path $PROFILE )) { New-Item -Type File -Path $PROFILE -Force }
+    # 用记事本打开配置文件
+    notepad $PROFILE
+    # 在其中添加下面的内容
+    Import-Module posh-git
+    Import-Module oh-my-posh
+    Set-Theme Paradox
+    # 如果后面日期乱码, 使用命令
+    Set-Culture en-US
+
+4. 生成配置文件目录, 可以通过命令查看
+    $PROFILE
+
+5. 使用命令设置主题
+    Set-Theme paradox
+        Agnoster
+        Avit        (这个主题有两行)
+        Darkblood
+        Fish
+        Honukai
+        Paradox
+        PowerLine
+        robbyrussell
+        Sorin
+        tehrob
+
+6. 安装Gow可以执行Linux命令
+    choco install gow
 
 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 系统美化
+关闭开启启动的服务
+    1. 设置里面搜索 "启动任务"
+    2. 关闭不需要的
+
+
+使任务栏透明
+    1. 在 Microsoft Store 中搜索 TranslucentTB 汉化版
