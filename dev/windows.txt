@@ -191,3 +191,32 @@ https://github.com/JanDeDobbeleer/oh-my-posh
 
 使任务栏透明
     1. 在 Microsoft Store 中搜索 TranslucentTB 汉化版
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 系统工具
+截屏
+微软应用商店 Snipaste
+
+清理优化
+Dism++
+
+
+清理注册表
+CCleaner
+
+
+右键管理
+RightMenuMgr
+
+
+磁力链接下载工具
+qBittorrent
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 删除win10预览版水印
+Universal Watermark Disabler
+
+
+
+
