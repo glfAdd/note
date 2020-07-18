@@ -1,0 +1,23 @@
+win10
+
+
+
+安装依赖Hyper-V, 如果没有需要安装
+
+
+
+将下面的内容复制到编辑器或者记事本当中, 保存为Hyper-V.cmd, 以管理员身份运行
+
+pushd "%~dp0"
+dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum >hyper-v.txt
+for /f %%i in ('findstr /i . hyper-v.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
+del hyper-v.txt
+Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL
+
+
+
+
+
+
+
+

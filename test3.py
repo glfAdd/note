@@ -1,13 +1,8 @@
-def test(a=[]):
-    print(a)
-    a.append(3)
+def t() -> int:
+    print(123)
+    return '---'
 
-def test2(a=None):
-    if not a:
-        a = []
-    print(a)
-    a.append(4)
-test2()
-test2()
-test2()
+t()
+
+
 

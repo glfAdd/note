@@ -674,8 +674,10 @@ ps -aux --sort -pcpu,+pmem | head -n 10
 scp 本地文件  远程用户名@远程ip:远程文件夹/远程文件名
 scp -r  本地文件夹  远程用户名@远程ip:远程文件夹/
 
+
 # 本地发送到服务器
 scp /home/work/source.txt work@192.168.0.10:/home/work/
+scp -P 63122 conf_pro.ini root@47.93.121.126:/root/source/ndc_data/conf/conf_pro.ini
 
 # 服务器下载到本地
 scp work@192.168.0.10:/home/work/source.txt work@192.168.0.11:/home/work/

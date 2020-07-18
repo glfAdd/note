@@ -21,6 +21,7 @@ usermod -s /bin/bash -g test glfadd
 # crontab -e
 
 0 1 * * * nohup pyton /sources/LFFlightChange/tools/ak_change.py > /dev/null 2>&1 &
+01 0 * * * sh /root/source/log_split.sh
 ```
 
 ##### 目录文件
