@@ -48,6 +48,11 @@ apt-get update
 
 第7步：安装Docker CE
 apt-get install docker-ce docker-ce-cli containerd.io
+
+
+service docker start
+service docker restart
+
 ```
 
 ##### mac
@@ -197,5 +202,15 @@ docker run --name jms_all -d -p 8030:80 -p 8020:2222 jumpserver/jms_all:latest
 8030的意思是Jumpserver 管理的客户端  8020代表的是你堡垒机的端口号
 访问:  http://127.0.0.1:8030/users/login/?next=/
 默认帐号： Admin  密码：admin
+```
+
+##### tensorflow serving
+
+```
+
+
+
+
+
 ```
 

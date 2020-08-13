@@ -13,6 +13,12 @@ https://packagecontrol.io/Package%20Control.sublime-package
 此时会进入到一个叫做Packages的目录下，点击进入上一层目录Sublime Text3，在此目录下有一个文件夹叫做Installed Packages，把刚才下载的文件放到这里就可以了。然后重启sublime text3，观察Preferences菜单最下边是否有Package Settings 和Package Control两个选项，如果有，则代表安装成功了。此时使用快捷键Ctrl+Shift+P，输入install，选择install package，想安装什么插件，在里面搜索名字就可以了        
 ```
 
+#####  删除插件
+
+```
+输入 remove package
+```
+
 ##### git
 
 ```python

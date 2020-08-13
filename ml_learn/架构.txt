@@ -1,0 +1,100 @@
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 技术栈
+gRPC
+bert-as-service
+Embedding
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - PMML
+PMML 是数据挖掘的一种通用的规范，它用统一的XML格式来描述我们生成的机器学习模型。这样无论你的模型是sklearn,R还是Spark MLlib生成的，我们都可以将其转化为标准的XML格式来存储。
+当我们需要将这个PMML的模型用于部署的时候，可以使用目标环境的解析PMML模型的库来加载模型，并做预测。
+可以看出，要使用PMML，需要两步的工作，第一块是将离线训练得到的模型转化为PMML模型文件，第二块是将PMML模型文件载入在线预测环境，进行预测。这两块都需要相关的库支持
+
+缺点:
+    1. PMML为了满足跨平台，牺牲了很多平台独有的优化，所以很多时候我们用算法库自己的保存模型的API得到的模型文件，要比生成的PMML模型文件小很多。同时PMML文件加载速度也比算法库自己独有格式的模型文件加载慢很多。
+    2. PMML加载得到的模型和算法库自己独有的模型相比，预测会有一点点的偏差，当然这个偏差并不大。比如某一个样本，用sklearn的决策树模型预测为类别1，但是如果我们把这个决策树落盘为一个PMML文件，并用JAVA加载后，继续预测刚才这个样本，有较小的概率出现预测的结果不为类别1.
+    3. 对于超大模型，比如大规模的集成学习模型，比如xgboost, 随机森林，或者tensorflow，生成的PMML文件很容易得到几个G，甚至上T，这时使用PMML文件加载预测速度会非常慢，此时推荐为模型建立一个专有的环境，就没有必要去考虑跨平台了。
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 模型部署
+TensorFlow
+    使用 TensorFlow Servering (官方推荐), 需要一个专门的tensorflow服务器，用来提供预测的API服务, 如果你的模型和对应的应用是比较大规模的，那么使用tensorflow serving是比较好的使用方式
+    不推荐使用PMML的方式来跨平台
+
+keras
+    TensorFlow Servering
+    https://dataxujing.github.io/
+
+Scikit
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 模型训练
+TensorFlow
+    Horovod 分布式训练
+
+Scikit-learning
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - keras
+tensorflow 与 keras 关系
+	tensorflow 是比较底层的深度学习模型开发语言
+	keras 是基于tensorflow的高级API, 通常直接调用一些封装好的函数就可以实现某些功能,而tensorflow虽然比较底层,
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 特征工程
+1. 数据中抽取出来的对结果预测有用的信息
+(2)特征工程师使用专业的背景知识和技巧来处理数据，使得特征能在机器学习算法中发挥更好的作用的过程
+(3)意义：更好的特征意味着更强的灵活度
+        更好的特征意味着只需要简单模型
+        更好的特征意味着更好的结果
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - docker 安装 TensorFlow Servering
+docker pull tensorflow/serving
+git clone https://github.com/tensorflow/serving
+TESTDATA="$(pwd)/serving/tensorflow_serving/servables/tensorflow/testdata"
+docker run -t --rm -p 8501:8501 -v "$TESTDATA/saved_model_half_plus_two_cpu:/models/half_plus_two" -e MODEL_NAME=half_plus_two tensorflow/serving &
+-p 8500:8500 -p 8501:8501 用于绑定rpc和rest端口。
+-v /home/zhi.wang/tensorflow-serving/model:/models 用于绑定目录映射。
+-e MODEL_NAME=wdl_model指定TFS加载模型名字，和目录tensorflow-serving/model下的模型名字保持一致， 如/home/zhi.wang/tensorflow-serving/model/wdl_model。
+--enable_batching=true 设置TFS开启batch功能。
+--batching_parameters_file=/models/batching_parameters.txt 绑定批量参数。
+
+
+# 将source目录中的例子模型，挂载到-t指定的docker容器中的target目录，并启动
+# docker run -d -p 8501:8501 --mount type=bind,source=/root/serving/tensorflow_serving/servables/tensorflow/testdata/saved_model_half_plus_two_cpu/,target=/models/half_plus_two -e MODEL_NAME=half_plus_two -t --name testserver tensorflow/serving
+
+--mount：   表示要进行挂载
+source：    指定要运行部署的模型地址， 也就是挂载的源，这个是在宿主机上的模型目录
+target:     这个是要挂载的目标位置，也就是挂载到docker容器中的哪个位置，这是docker容器中的目录
+-t:         指定的是挂载到哪个容器
+-p:         指定主机到docker容器的端口映射
+docker run: 启动这个容器并启动模型服务（这里是如何同时启动容器中的模型服务的还不太清楚）
+
+综合解释：
+         将source目录中的例子模型，挂载到-t指定的docker容器中的target目录，并启动
+         将source目录中的例子模型，挂载到-t指定的docker容器中的target目录，并启动
+
+curl -d '{"instances": [1.0, 2.0, 5.0]}' -X POST http://localhost:8501/v1/models/half_plus_two:predict
+
+
+
+TensorFlow主要有三种模型格式：CheckPoint(.ckpt)，SavedModel，GraphDef(*.pb)。这三种格式之间可以互相转换，CheckPoint格式在训练模型时候每隔几轮保存一次，以方便增量训练。GraphDef格式适用于python、java的tensorflow库进行加载，SavedModel是TensorFlow-Serving要求的格式
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -10,23 +10,6 @@ from sanic.log import logger
 from sanic.response import json
 from sanic.response import text
 
-""" ============================ config
-config对象实现两个__getattr__和__setattr__
-
-方式1: 使用属性
-app = Sanic('myapp')
-app.config.DB_NAME = 'appdb'
-app.config.DB_USER = 'appuser'
-
-
-方式2: 使用update
-db_settings = {
-    'DB_HOST': 'localhost',
-    'DB_NAME': 'appdb',
-    'DB_USER': 'appuser'
-}
-app.config.update(db_settings)
-"""
 
 """ ============================ 加载配置
 配置文件是.py文件, 定义大写变量, 给变量赋值
