@@ -682,6 +682,7 @@ scp -P 63122 conf_pro.ini root@47.93.121.126:/root/source/ndc_data/conf/conf_pro
 # 服务器下载到本地
 scp work@192.168.0.10:/home/work/source.txt work@192.168.0.11:/home/work/
  scp -P 63122 glf@47.93.122.31:/home/glf/source/ndc_data/logs/ndc_data_develop.log .
+ scp -P 63122 root@47.93.121.126:/logs/ndc_data_develop.log .
 
 # 文件夹
 scp -r /home/work/sourcedir work@192.168.0.10:/home/work/

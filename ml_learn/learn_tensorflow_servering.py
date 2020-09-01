@@ -6,7 +6,7 @@ TensorFlow主要有三种模型格式, 可以互相转换
 """
 
 """ ============================ tensorflow serving
-参考
+官网文档
 https://tensorflow.google.cn/tfx/serving/docker?hl=zh-cn
 
 # 拉取 docker 镜像
@@ -45,6 +45,27 @@ source 是模型的目录 /home/glfadd/Desktop/serving/tensorflow_serving/servab
 
 # 进入模型
 docker exec -it tf_test bash
+
+# 将导出的模型导入到运行的容器中
+docker cp 模型路径 容器ID：路径
+
+# 以后台运行方式开启一个tensorflow/serving的守护进程
+docker run -d --name serving_base tensorflow/serving
+# 复制本地SavedModel到容器存放models的文件夹下
+docker cp ./model serving_base:/models/model
+# docker commit提交修改制作新镜像my_model_0,且设置环境变量为模型名model
+docker commit --change "ENV MODEL_NAME model" serving_base my_model_0
+# 启用my_model_0镜像，此时不需要指定-v/--mount,-e等参数，可直接使用
+docker run -t --rm -p 8501:8501 my_model_0
+# 重开一个终端，验证是否成功
+curl http://localhost:8501/v1/models/model
+
+
+
+
+"""
+""" ============================ 导出模型
+
 
 
 """

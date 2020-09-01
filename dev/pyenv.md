@@ -185,7 +185,10 @@ ModuleNotFoundError: No module named 'MySQLdb'
 pip install pymysql
 修改SQLALCHEMY_DATABASE_URI = ‘mysql://root:123456@127.0.0.1:3306/db_python’ 为：
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql: / /root:123456@127.0.0.1:3306/db_python '
+
+pip install mysqlclient
 ```
+
 
 ##### sqlalchemy init 失败
 
