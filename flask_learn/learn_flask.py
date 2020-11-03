@@ -184,7 +184,7 @@ def get_phont(number):
     return str(number)
 
 
-@app.route("/test/")
+@app.route("/tests/")
 def test():
     url = url_for('get_phont', number='13444444444')
     return redirect(url)

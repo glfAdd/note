@@ -69,7 +69,7 @@ a.number = 200
 print(a.number)
 
 """ ============================ property 
-def __init__(self, fget=None, fset=None, fdel=None, doc=None):
+def __init__(self, fget=None, fset=None, fdel=None, docs=None):
 fget 只读
 fset 读写
 """

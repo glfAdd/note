@@ -10,17 +10,17 @@ if __name__ == '__main__':
     # # 导入模块 相当于 import
     # a = __import__('a.b.c')
     # # 获取类
-    # c = getattr(a.b.c, 'test')
+    # c = getattr(a.b.c, 'tests')
     # # 实例化对象
     # d = c()
     # # 调用方法
     # getattr(d, 'ccc')(1111)
 
     # 导入模块 相当于 from ... import ...
-    a = __import__('a.b.c', fromlist=('test',))
+    a = __import__('a.b.c', fromlist=('tests',))
     print(dir(a))
     # 获取类
-    c = getattr(a, 'test')
+    c = getattr(a, 'tests')
     # 实例化对象
     d = c()
     # 调用方法

@@ -187,7 +187,7 @@ value
     
     
 set one 0 900 9
-test
+tests
     
     
 STORED：保存成功

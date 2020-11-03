@@ -131,16 +131,16 @@ echo "chaoge666" >> /tmp/oldboy.txt
 
 
 先输入, 然后输入EOF停止(ctrl + d), 输入的内容写入了 c 文件
-[root@centos1 test]# cat << EOF > c
+[root@centos1 tests]# cat << EOF > c
 > 123
 > abc abc
 > 111
 > EOF
-[root@centos1 test]# cat c
+[root@centos1 tests]# cat c
 123
 abc abc
 111
-[root@centos1 test]#
+[root@centos1 tests]#
 """
 
 """ ============================ ls
@@ -209,18 +209,18 @@ ln -s   软链接
     - 可以循环链接自己
 
 
-[root@centos1 test]# touch a
-[root@centos1 test]# ln a a2
-[root@centos1 test]# ln -s a a3
-[root@centos1 test]# ll -i
+[root@centos1 tests]# touch a
+[root@centos1 tests]# ln a a2
+[root@centos1 tests]# ln -s a a3
+[root@centos1 tests]# ll -i
 总用量 0
 34209411 -rw-r--r--. 2 root root 0 2月   4 10:39 a
 34209411 -rw-r--r--. 2 root root 0 2月   4 10:39 a2
 34209414 lrwxrwxrwx. 1 root root 1 2月   4 10:39 a3 -> a
-[root@centos1 test]# rm -rf a
-[root@centos1 test]# cat a3
+[root@centos1 tests]# rm -rf a
+[root@centos1 tests]# cat a3
 cat: a3: 没有那个文件或目录
-[root@centos1 test]#
+[root@centos1 tests]#
 
 1. 硬链接 a a2 的inode节点相同都是34209411, 软连接的不同
 2. 删除原始文件a后, 硬链接a2不受影响, 但软连接a3文件无效
@@ -230,17 +230,17 @@ cat: a3: 没有那个文件或目录
 """ ============================ pwd
     - P 查看软连接的实际路径
     
-[root@centos1 test]# mkdir a
-[root@centos1 test]# ln -s a a2
-[root@centos1 test]# ll
+[root@centos1 tests]# mkdir a
+[root@centos1 tests]# ln -s a a2
+[root@centos1 tests]# ll
 总用量 0
 drwxr-xr-x. 2 root root 6 2月   4 10:43 a
 lrwxrwxrwx. 1 root root 1 2月   4 10:43 a2 -> a
-[root@centos1 test]# cd a2/
+[root@centos1 tests]# cd a2/
 [root@centos1 a2]# pwd
-/root/test/a2
+/root/tests/a2
 [root@centos1 a2]# pwd -P
-/root/test/a
+/root/tests/a
 [root@centos1 a2]#
 """
 
@@ -406,7 +406,7 @@ grep -r "aaa" .
 grep 'world' -d recurse ~/projects/
 
 # 匹配多个字符串
-grep -e "test" -e "aaa" file_name
+grep -e "tests" -e "aaa" file_name
 
 # 显示匹配和之 前 / 后 / 前后 n行
 grep -A 4 "aaa" a

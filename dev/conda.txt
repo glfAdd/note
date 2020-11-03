@@ -36,7 +36,6 @@ conda upgrade conda
 conda activate p367ndc          激活环境
 conda deactivate                退出环境
 conda remove -n py2.7 --all     删除环境
-conda info -e                   查询有哪些环境
 conda env list                  查询有哪些环境
 
 6. cmd 命令
@@ -72,3 +71,10 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 trusted-host = https://pypi.tuna.tsinghua.edu.cn
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 命令
+问题:
+An unexpected error has occurred. Conda has prepared the above report.
+
+解决办法:
+conda clean -i
+
+

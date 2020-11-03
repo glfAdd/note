@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:123456@127.0.0.1:test'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:123456@127.0.0.1:tests'
 app.config["SQLALCHEMY_COMMIT_ON_TEARDOWN"] = True
 db = SQLAlchemy(app)
 

@@ -1,6 +1,6 @@
 """ ============================ mac 安装
 确保open files足够大, 否则会报TOO MANY FILES OPEN错误, 通过 ulimit -a 查看
-使用ulimit -n 10000可以修改该值, 临时生效
+使用sudo ulimit -n 10000可以修改该值, 临时生效
 
 
 安装siege
@@ -9,7 +9,7 @@ tar -xvf siege-latest.tar.gz
 cd siege-4.0.2/
 ./configure
 make
-make install
+sudo make install
 """
 
 """ ============================ 参数说明
@@ -71,6 +71,52 @@ siege "http://118.212.149.xx:8080/xx/xx/xx POST {\"accountId\":\"123\",\"platfor
 
 
 """ ============================ 命令
+问题1:
+================================================================
+WARNING: The number of users is capped at 255.  To increase this
+         limit, search your .siegerc file for 'limit' and change
+         its value. Make sure you read the instructions there...
+================================================================
+解决办法:
+修改 vim /home/glfadd/.siege/siege.conf
+limit = 100000
+
+
+
+问题2:
+[error] Exceeded thread limit for this system crew.c:89: Cannot allocate memory
+[fatal] unable to allocate memory for 100000 simulated browser: Cannot allocate memory
+
+
+问题3:
+[error] socket: read error Resource temporarily unavailable sock.c:635: Resource temporarily unavailable
+修改系统最大进程数
+
+查看进程总数
+ps -ef | wc -l
+查看系统设置的最大进程数
+sysctl kernel.pid_max
+查看当前进程数
+ps -eLf | wc -l
+修改最大进程数
+echo "kernel.pid_max=1000000 " >> /etc/sysctl.conf
+sysctl -p
+查看某个服务的进程数 eg：http服务：
+ps -ef | grep httpd | wc -l
+查看物理cpu个数
+grep 'physical id' /proc/cpuinfo | sort -u
+查看核心数量
+grep 'core id' /proc/cpuinfo | sort -u | wc -l
+查看线程数
+grep 'processor' /proc/cpuinfo | sort -u | wc -l
+
+
+问题4:
+[error] socket: unable to connect sock.c:282: Connection refused
+
+
+问题5:
+[error] socket: unable to connect sock.c:282: Operation already in progress
 
 
 """

@@ -141,6 +141,10 @@ docker run --name mysql8 -e MYSQL_ROOT_PASSWORD=123456 -p 3307:3307 -d mysql
 docker exec -it mysql sh
 # 登录
 mysql -uroot -p123456
+
+# 无法链接docker mysql 问题
+执行一次
+alter user 'root'@'%' identified with mysql_native_password by '123456';
 ```
 
 ##### redis

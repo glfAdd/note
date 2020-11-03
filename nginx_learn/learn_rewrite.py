@@ -67,7 +67,7 @@ keepalive connections;
     connections: Nginx的每个工作进程允许该服务器组保持空闲网络连接的上限. 如果超过, 工作进程将采用最近最少使用的策略关闭网络连接.
 
     
-upstream test {
+upstream tests {
     ip_hash;
     least_conn;
     # 如果30s之内3次请求失败, 则30秒内被认为是无效状态. 
@@ -174,10 +174,10 @@ http://test.com/source?name=ming&age=2
 rewrite接收的URI为/source, 不包含http://text.com和name=ming&age=2
 
 
-rewrite test.com http://test.com/home;
+rewrite tests.com http://test.com/home;
 # 默认情况下, 接收的URI不包含请求URL后面的参数
 # $request_uri? 可以将后面的参数传给新的URI
-rewrite test.com http://test.com/home$requrest_uri? permancent;
+rewrite tests.com http://test.com/home$requrest_uri? permancent;
 
 
 last: 
@@ -185,8 +185,8 @@ last:
 2. 并将重写后的URI重新在server块中执行
 location / {
     # 如果第1个匹配成功并处理, 则不会使用第2个匹配, 并且让server中所有location重新处理新的URI
-    rewrite ^(/test/.*)/media/(.*)\..*$ $1/mp3/$2.mp3 last;
-    rewrite ^(/test/.*)/file/(.*)\.*$ $1/mp3/$2.ra last;
+    rewrite ^(/tests/.*)/media/(.*)\..*$ $1/mp3/$2.mp3 last;
+    rewrite ^(/tests/.*)/file/(.*)\.*$ $1/mp3/$2.ra last;
 }
 
 
@@ -194,8 +194,8 @@ break:
 重写后的URI在location中继续处理, 新URI始终在本location中处理
 location / {
     # 如果第1个匹配成功并处理, 新的URI继续在本location中使用第2行匹配
-    rewrite ^(/test/.*)/media/(.*)\..*$ $1/mp3/$2.mp3 break;
-    rewrite ^(/test/.*)/file/(.*)\.*$ $1/mp3/$2.ra break;
+    rewrite ^(/tests/.*)/media/(.*)\..*$ $1/mp3/$2.mp3 break;
+    rewrite ^(/tests/.*)/file/(.*)\.*$ $1/mp3/$2.ra break;
 }
 
 
@@ -310,7 +310,7 @@ server {
 
 """ ============================ 自动为结尾增加 / 
 server {
-    server_name www.test.com;
+    server_name www.tests.com;
     location ^~ {
         if (-d $request_filename) {
             rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;

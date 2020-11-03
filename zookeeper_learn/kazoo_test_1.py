@@ -28,7 +28,7 @@ zk.start()
 # LOST刚创建时  CONNECTED连接建立成功  SUSPENDED断开连接
 print zk.state
 print zk.connected
-print zk.exists("/test/zk1")
+print zk.exists("/tests/zk1")
 # .........................................................get set
 # 获取详情, 并注册监视器函数
 zk.set('/abc/JQK/XYZ/00020000000054', b'123123')

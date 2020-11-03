@@ -16,7 +16,7 @@ resolver_timeout time;
 
 proxy_pass URL;
     设置代理服务器的协议和地址
-    - proxy_pass http:test.com;
+    - proxy_pass http:tests.com;
 """
 
 """ ============================ 实例

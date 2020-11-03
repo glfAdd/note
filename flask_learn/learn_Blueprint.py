@@ -7,7 +7,7 @@
 当执行应用对象的 register_blueprint() 方法时，应用对象从蓝图对象的 defered_functions 列表中取出每一项，即调用应用对象的 add_url_rule() 方法，这将会修改程序实例的路由映射列表。
 
 
-<Rule '/admin/test/' (HEAD, OPTIONS, GET) -> admin.admin_index>
+<Rule '/admin/tests/' (HEAD, OPTIONS, GET) -> admin.admin_index>
 蓝图名称 . 视图函数名称
 """
 
@@ -18,7 +18,7 @@ admin = Blueprint('admin', __name__)
 
 
 # 注册蓝图路由
-@admin.route('/test/')
+@admin.route('/tests/')
 def admin_index():
     return 'admin_index'
 

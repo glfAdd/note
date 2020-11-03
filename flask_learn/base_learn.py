@@ -45,9 +45,9 @@ def hello_world(user_name=None):
 
 
 # 访问的url没有斜线会重定向到有斜线的URL上
-@app.route('/test/config')
+@app.route('/tests/config')
 # 访问的url有些线会404
-# @app.route('/test')
+# @app.route('/tests')
 def test():
     return 'text'
 

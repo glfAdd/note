@@ -39,7 +39,7 @@ def index():
 
     # 2.使用make_response构造相应体
     res = make_response('content text')
-    res.status = '333 test'
+    res.status = '333 tests'
     res.headers['name'] = 'xiao'
     return res
 

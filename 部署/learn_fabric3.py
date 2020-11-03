@@ -110,8 +110,8 @@ def hello():
 
 """ ============================ local 
 用以执行本地命令
-ef test():
-    result = local('make test',capture=True)
+ef tests():
+    result = local('make tests',capture=True)
     print(result)
     print(result.failed)
     print(result.succeeded)

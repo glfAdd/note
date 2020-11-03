@@ -12,7 +12,7 @@ from b05_2blueprints import one, two
 
 app = Flask(__name__)
 app.register_blueprint(one)
-app.register_blueprint(one, url_prefix='/test')
+app.register_blueprint(one, url_prefix='/tests')
 app.register_blueprint(two)
 if __name__ == '__main__':
     app.run(debug=True)

@@ -30,8 +30,8 @@ def __init__(
 """ ============================ 参考 
 run：    #执行远程命令，如：run('uname -a')
 cd：     #切换远程目录，如：cd('/root');   with conn.cd('/root'):继承这个状态
-put：    #上传本地文件到远程主机，如：put('/root/test.py','/root/test.py')
-get:     #获取服务器上文件，如：get('/root/project/test.log')
+put：    #上传本地文件到远程主机，如：put('/root/tests.py','/root/tests.py')
+get:     #获取服务器上文件，如：get('/root/project/tests.log')
 sudo：   #sudo方式执行远程命令，如：sudo('service docker start')
 """
 

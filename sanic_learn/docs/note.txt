@@ -1,0 +1,34 @@
+github 开源项目
+https://github.com/howie6879/Sanic-For-Pythoneer
+
+
+async/await
+
+
+
+sanic 快的原因
+1. 使用 async/await
+2. Sanic使用了uvloop作为asyncio的事件循环，uvloop由Cython编写，它的出现让asyncio更快
+3. ***** 必看 https://codingpy.com/article/uvloop-blazing-fast-networking-with-python/
+
+
+
+
+aiohttp 异步请求框架
+
+request.py
+response.py
+
+
+教程
+https://juejin.im/post/6844903944666218509
+
+
+
+
+
+
+
+
+
+

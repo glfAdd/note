@@ -48,7 +48,7 @@ IBM等大型服务器用大端
 为了统一发送时所有多字节组成的数据格式，都转成大端发送。
 
 # 创建请求时需要打包
-struct.pack("!H8sb5sb",1,"test.jpg",0,"octet",0)
+struct.pack("!H8sb5sb",1,"tests.jpg",0,"octet",0)
 !	表示数据按照网络数据大端格式
 H	占位置，表示2个字节大小
 8s	8个1字节大小
@@ -79,7 +79,7 @@ else:
 udpSocket = socket(AF_INET, SOCK_DGRAM)
 
 #构造下载请求数据
-cmd_buf = struct.pack("!H8sb5sb",1,"test.jpg",0,"octet",0)
+cmd_buf = struct.pack("!H8sb5sb",1,"tests.jpg",0,"octet",0)
 
 #发送下载文件请求数据到指定服务器
 sendAddr = (ip, 69)
@@ -92,17 +92,17 @@ recvFile = ''
 while True:
     recvData,recvAddr = udpSocket.recvfrom(1024)
     recvDataLen = len(recvData)
-    # print recvAddr # for test
-    # print len(recvData) # for test
+    # print recvAddr # for tests
+    # print len(recvData) # for tests
     cmdTuple = struct.unpack("!HH", recvData[:4])c
-    # print cmdTuple # for test
+    # print cmdTuple # for tests
     cmd = cmdTuple[0]
     currentPackNum = cmdTuple[1]        
 
     if cmd == 3: #是否为数据包
         # 如果是第一次接收到数据，那么就创建文件
         if currentPackNum == 1:
-            recvFile = open("test.jpg", "a")
+            recvFile = open("tests.jpg", "a")
 
         # 包编号是否和上次相等
         if p_num+1 == currentPackNum:

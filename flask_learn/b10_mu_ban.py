@@ -48,7 +48,7 @@ def hello_itcast():
     # return render_template('child_01.html')
 
 
-@app.route('/test/')
+@app.route('/tests/')
 def test_tm():
     return '12312'
 

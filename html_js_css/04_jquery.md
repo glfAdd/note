@@ -129,7 +129,7 @@ $('#div1').html('<span>添加文字</span>');
 // 取出图片的地址
 var $src = $('#img1').prop('src');
 // 设置图片的地址和alt属性
-$('#img1').prop({src: "test.jpg", alt: "Test Image" });
+$('#img1').prop({src: "tests.jpg", alt: "Test Image" });
 ```
 
 ##### 循环

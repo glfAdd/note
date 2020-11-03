@@ -89,7 +89,7 @@ $('#div1').text('<span>添加文字</span>');
 // 取出图片的地址
 var $src = $('#img1').attr('src');
 // 设置图片的地址和alt属性
-$('#img1').attr({ src: "test.jpg", alt: "Test Image" });
+$('#img1').attr({ src: "tests.jpg", alt: "Test Image" });
 ```
 
 绑定click事件

@@ -114,7 +114,7 @@ re.match(r".*\bver\b", "ho ver abc")
 re.match(r".*\Bver\B", "hoverabc")
 # | 两边都可以，多的时候写在括号里面
 re.match("[1-9]?\d$|100", "78")
-re.match("\w{4,20}@(163|126|qq)\.com", "test@126.com")
+re.match("\w{4,20}@(163|126|qq)\.com", "tests@126.com")
 # 使用第x个括号里面的内容
 # \2使用第2个括号的内容
 re.match(r"<(\w*)><(\w*)>.*</\2></\1>", "<html><h1>www.itcast.cn</h1></html>")

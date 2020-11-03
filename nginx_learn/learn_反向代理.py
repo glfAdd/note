@@ -45,7 +45,7 @@ server {
 
 # proxy_pass中URL是否带有URI
 server {
-    server_name www.test.com
+    server_name www.tests.com
     location /server/ {
         # proxy_pass http://192.168.3.1/;
         # proxy_pass http://192.168.3.1/url/;

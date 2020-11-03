@@ -253,6 +253,15 @@ yum install openvpn
 复制文件到/etc/openvpn
 运行
 openvpn glf.ovpn
+
+设置配置文件保存用户名和密码
+    1. 进行OPENVPN安装目录下config目录
+    2. 打开并编辑你的配置文件XXXX.ovpn
+    3. 在XXXX.ovpn最后增加配置 auth-user-pass pass.txt
+    4. 在同目录下创建XXXX.ovpn的配置文件名 pass.txt将写入用户和密码
+    (第一行用户名, 第二行密码)
+
+
 **************************************************
 anaconda
 
