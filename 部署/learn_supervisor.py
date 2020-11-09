@@ -309,6 +309,8 @@ loglevel = 'error'
 
 
 """ ============================ 实际配置
+文件名子 dept_api.ini
+
 [program:hospital_alias_clean]
 directory=/home/projects/hospital_alias_clean
 command=/root/.virtualenvs/envHciPython3.6.6/bin/python /root/.virtualenvs/envHciPython3.6.6/bin/gunicorn -c config/gunicorn.conf application:app

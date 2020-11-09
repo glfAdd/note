@@ -177,18 +177,6 @@ $ MACOSX_DEPLOYMENT_TARGET=10.7 python setup.py install
 
 ```
 
-##### 安装失败MySQLdb
-
-```
-ModuleNotFoundError: No module named 'MySQLdb'
-解决办法:
-pip install pymysql
-修改SQLALCHEMY_DATABASE_URI = ‘mysql://root:123456@127.0.0.1:3306/db_python’ 为：
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql: / /root:123456@127.0.0.1:3306/db_python '
-
-pip install mysqlclient
-```
-
 
 ##### sqlalchemy init 失败
 
