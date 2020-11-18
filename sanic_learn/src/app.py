@@ -1,4 +1,3 @@
-# todo ***** 很奇怪
 import views
 from sanic import Sanic
 

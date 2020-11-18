@@ -1,0 +1,88 @@
+https://zhuanlan.zhihu.com/p/145551967
+
+
+特点:
+    HBase可以以低成本来存储海量的数据并且支持高并发随机写和实时查询
+    存储数据的结构非常灵活
+    列式存储
+    行与行之间的列不需要相同
+    先有列族后有列，列可以随意添加
+    一个列族下可以任意添加列，不受任何限制
+    数据写到HBase的时候都会被记录一个时间戳, 这个时间戳当做一个版本. 修改或者删除某一条的时候，本质上是往里边新增一条数据，记录的版本加一了而已
+
+
+其他数据库特点
+    MySQL是单机的, 能存储多少数据，取决于那台服务器的硬盘大小, 以现在互联网的数据量，很多时候MySQL是没法存储那么多数据的。
+    Kafka用来处理消息的, 解耦异步削峰. Kafka将数据到持久化到硬盘中，并且Kafka是分布式的（很方便的扩展），可以存储很大的数据
+    Redis是缓存数据库，所有的读写都在内存中，速度快, Redis不适合存大量的数据
+    HDFS可以存储海量的数据, 缺点: 不支持随机修改, 查询效率低, 对小文件支持不友好
+
+
+HDFS和HBase关系
+    HDFS是文件系统，而HBase是数据库, HBase只是一个NoSQL数据库，把数据存在HDFS上
+    HBase在HDFS之上提供了高并发的随机写和支持实时查询，这是HDFS不具备的
+    可以把HBase当做是MySQL, 把HDFS当做是硬盘
+
+
+RowKey              行键
+Column              列
+Column Family       列族
+Column Qualifier    列修饰符
+
+
+HBase Key-Value结构图
+key length + value length + row length + row key + column family length + column family + Column Qualifier + TimeStamp + key type + value
+Key 由 RowKey + ColumnFamily + Column Qualifier + TimeStamp + KeyType 组成, Value就是实际上的值
+    KeyType: 如删除等
+准确定位一条数据: RowKey+Column+时间戳
+
+
+请求hbase数据大致流程
+    client请求到Zookeeper，然后Zookeeper返回HRegionServer地址给client，client得到Zookeeper返回的地址去请求HRegionServer，HRegionServer读写数据后返回给client
+
+
+HLog:
+    写数据的时候是先写到内存的，为了防止机器宕机，内存的数据没刷到磁盘中就挂了。我们在写Mem store的时候还会写一份HLog, 是顺序写到磁盘的，所以速度快
+
+HMaster:
+    HMaster会处理元数据的变更和监控RegionServer的状态
+    HMaster会处理 HRegion 的分配或转移
+    如果HRegion的数据量太大的话，HMaster会对拆分后的Region重新分配RegionServer
+    如果发现失效的HRegion，也会将失效的HRegion分配到正常的HRegionServer中
+
+HRegionServer:
+    是真正干活的机器用于与hdfs交互
+
+HRegion:
+    HregionServer 有多个 HRegion
+    HBase一张表的数据会分到多台机器上, 用RowKey来切分, 其实就是表的横向切割, 根据rowKey切分到不同的HRegion上
+
+store
+    HRegion里边会有多个Store，每个Store其实就是一个列族的数据
+    store里面有Mem Store、Store File、HFile
+    HBase在写数据的时候，会先写到Mem Store，当MemStore超过一定阈值，就会将内存中的数据刷写到硬盘上，形成StoreFile，而StoreFile底层是以HFile的格式保存，HFile是HBase中KeyValue数据的存储格式
+
+
+RowKey
+    RowKey是唯一的
+    无论是读和写我们都是用RowKey去定位到HRegion，然后找到HRegionServer
+    HRegion上有两个很重要的属性：start-key和end-key. 在定位HRegionServer的时候，实际上就是定位我们这个RowKey在不在这个HRegion的start-key和end-key范围之内
+
+
+热点数据的问题
+    java3y111
+    java3y222
+    java3y333
+    java3y444
+    java3y555
+    aaa
+    bbb
+    java3y777
+    java3y666
+    java3y...
+
+    Java3yxxx开头的RowKey很多，而其他的RowKey很少。如果我们有多个HRegion的话，那么存储Java3yxxx的HRegion的数据量是最大的，而分配给其他的HRegion数量是很少
+    查询也几乎都是以java3yxxx的数据去查，这会导致某部分数据会集中在某台HRegionServer上存储以及查询，而其他的HRegionServer却很空闲
+    解决办法: RowKey散列, 分配到HRegion的时候就比较均匀，少了热点的问题
+
+

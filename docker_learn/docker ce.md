@@ -2,6 +2,8 @@
 
 ##### centos
 
+https://hub.docker.com/
+
 ```bash
 安装
 # yum -y install yum-utils
@@ -88,6 +90,26 @@ service docker restart
 https://hub.docker.com/
 ```
 
+##### 设置IP
+
+```
+查看docker所有网络类型
+$ docker network
+bridge: 桥接网络, 每次启动容器ip变化(默认)
+host: 主机网络, 使用主机的网络
+none: 无指定网络, 不会分配局域网的IP
+
+
+启动时这是ip
+docker run -itd --name test1 --network bridge --ip 172.17.0.10 centos:latest /bin/bash
+
+
+1. 创建自定义网络(设置固定ip)
+docker network create --subnet=172.18.0.0/16 mynetwork
+2. 创建docker容器, 使用自定义网络
+docker run --net mynetwork --ip 172.18.0.10 --name redis -p 6379:6379 -d redis:latest
+```
+
 # Docker
 
 ##### apt-get
@@ -151,7 +173,7 @@ alter user 'root'@'%' identified with mysql_native_password by '123456';
 
 ```python
 docker pull redis
-docker run --name redis -p 6379:6379 -d redis:latest
+docker run --net mynetwork --ip 172.18.0.10 --name redis -p 6379:6379 -d redis:latest
     
 mac客户端
 https://github.com/luin/medis
@@ -161,7 +183,29 @@ https://github.com/luin/medis
 
 ```
 docker pull zookeeper
-docker run --privileged=true -d --name zookeeper --publish 2181:2181  -d zookeeper:latest
+docker run --net mynetwork --ip 172.18.0.11 --name zookeeper --restart always -p 2181:2181 -d zookeeper 
+```
+
+##### kafka
+
+```
+参考
+https://juejin.im/entry/6844903829624848398
+
+docker run  -d --net mynetwork --ip 172.18.0.12 --name kafka -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=172.18.0.11:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.18.0.12:9092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -t wurstmeister/kafka
+
+测试
+1. 进入docker
+docker exec -it kafka /bin/bash
+
+2. 进入目录
+cd opt/kafka_2.11-2.0.0/
+
+3. 发送消息, 输入12345
+./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mykafka
+ 
+4. 如果收到消息12345则成功
+./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic mykafka --from-beginning
 ```
 
 ##### nginx
@@ -175,13 +219,36 @@ docker run -d --name nginx nginx
 
 ```
 docker pull postgres:9.5
-docker run --name postgres95 -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:11.4
+docker run --name postgres11 -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:11.4
 run，创建并运行一个容器；
 --name，指定创建的容器的名字；
 -e POSTGRES_PASSWORD=password，设置环境变量，指定数据库的登录口令为password；
 -p 54321:5432，端口映射将容器的5432端口映射到外部机器的54321端口；
 -d postgres:9.4，指定使用postgres:9.4作为
 ```
+
+##### mua项目
+
+```
+发送文件到docker
+docker cp /root/init.sh  CS5_AS_EALL1:/home/hundsun/workspace/log
+运行sql文件
+psql -d postgres -U postgres -f /document/xindebaby.sql
+进入容器查看ip
+cat /etc/hosts
+
+问题1:
+centos 执行时出现错误
+ImportError: libXrender.so.1: cannot open shared object file: No such file or directory
+解决办法
+yum install libXrender-devel.x86_64
+
+
+
+
+```
+
+
 
 ##### rabbitmq
 
@@ -216,5 +283,15 @@ docker run --name jms_all -d -p 8030:80 -p 8020:2222 jumpserver/jms_all:latest
 
 
 
+```
+
+##### hbase
+
+```
+docker pull harisekhon/hbase
+docker run -d --net mynetwork --ip 172.18.0.13 --name hbase1 -P harisekhon/hbase
+
+浏览器打开页面
+http://172.18.0.13:16010/master-status
 ```
 
