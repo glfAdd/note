@@ -86,6 +86,21 @@ Kafka 中默认的消费位移的提交方式为自动提交, 不是每消费一
 
 
 
+==================================== python库
+
+Asynckafka (速度快, 星星少, 没有连接池)
+https://jmf-mordis.github.io/asynckafka/installation.html#install-asynckafka-package
+安装
+apt-get install librdkafka-dev
+$ pip install asynckafka
+
+
+
+aiokafka (用这个, 有连接池)
+pip install aiokafka
+https://pypi.org/project/aiokafka/
+
+
 
 
 

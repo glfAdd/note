@@ -66,7 +66,6 @@ async def cluster():
 
 
 async def pool():
-    aredis.ConnectionPool
     rdb_pool = aredis.ConnectionPool(host='172.17.0.2', port=6379, max_connections=20, db=0)
     r_db = StrictRedis(connection_pool=rdb_pool)
     await r_db.set('foo1', 1)

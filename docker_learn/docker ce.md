@@ -1,8 +1,19 @@
 # 安装
 
-##### centos
+##### docker镜像网站
 
+```
 https://hub.docker.com/
+```
+
+##### 镜像中安装vim
+
+```
+apt-get update
+apt-get install vim
+```
+
+##### centos
 
 ```bash
 安装
@@ -148,6 +159,11 @@ docker stop -t=60 容器ID或容器名
 docker kill 容器ID或容器名
 # 搜索
 docker starch jumpserver
+--------------------------------------------------------------
+# 查看容器详细信息
+docker inspect mysql8
+# 可以查看容器中正在运行的进程
+docker top mysql8
 ```
 
 ##### mysql
@@ -156,17 +172,48 @@ docker starch jumpserver
 docker pull mysql
 docker pull mysql:5.7.25
 # 创建并启动一个MySQL容器
-docker run --name mysql7 -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:5.7.25
-docker run --name mysql8 -e MYSQL_ROOT_PASSWORD=123456 -p 3307:3307 -d mysql
+docker run --net mynetwork --ip 172.18.0.14 --name mysql7 -e MYSQL_ROOT_PASSWORD=asdf123456 -p 3306:3306 -d mysql:5.7.25
+docker run --net mynetwork --ip 172.18.0.14 --name mysql8 -e MYSQL_ROOT_PASSWORD=asdf123456 -p 3307:3307 -d mysql
 
+docker run -itd --name mysql7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=asdf123456 mysql:5.7.25
 # 进入容器
 docker exec -it mysql sh
 # 登录
-mysql -uroot -p123456
+mysql -uroot -pasdf123456
 
 # 无法链接docker mysql 问题
 执行一次
-alter user 'root'@'%' identified with mysql_native_password by '123456';
+alter user 'root'@'%' identified with mysql_native_password by 'asdf123456';
+
+------------------------------------------------- 修改密码
+alter user'root'@'%' IDENTIFIED BY 'asdf123456'; 
+alter user'root'@'localhost' IDENTIFIED BY 'asdf123456'; 
+flush privileges;
+-------------------------------------------------
+# 修改密码后提示(localhost 不能登录)
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+1. 指定ip和端口登录
+mysql -uroot -pasdf123456 -h127.0.0.1 -P3306
+2. 修改密码
+------------------------------------------------- 永久修改 docker 下编码
+1. 进入docker 备份当前my.cnf文件
+mv /etc/mysql/my.cnf /etc/mysql/my.cnf.bak
+2. 退出容器
+3. 创建文件my.cnf
+[client]
+default-character-set=utf8
+[mysqld]
+character-set-server=utf8
+collation-server=utf8_general_ci
+4. 将文件发送到docker中
+docker cp my.cnf mysql7:/etc/mysql
+5. 重启镜像
+6. 进入mysql查看编码
+SHOW VARIABLES LIKE 'character_set_%';
+
+# 这种方法修改只是当前登录临时有效
+set character_set_client=utf8;
+
 ```
 
 ##### redis

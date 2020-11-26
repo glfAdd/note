@@ -160,6 +160,6 @@ if __name__ == '__main__':
     # create_table()
     # delete_table()
     # get_table_inf()
-    # insert_row()
+    insert_row()
     # delete()
-    get_row()
+    # get_row()
