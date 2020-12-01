@@ -3,8 +3,8 @@
 ```
 git的全局配置($HOME/.gitconfig )
 git config --global user.name gonglongfei
-git config --global user.email gonglongfei@xindebaby.com
-ssh-keygen -t rsa -C gonglongfei@xindebaby.com
+git config --global user.email 2239660080@qq.com
+ssh-keygen -t rsa -C 2239660080@qq.com
 
 /Users/laddg/.ssh
 cat id_rsa.pub

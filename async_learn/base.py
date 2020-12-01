@@ -1,4 +1,8 @@
 """
+官网文档
+https://docs.python.org/zh-cn/3/library/asyncio-dev.html#running-blocking-code
+
+
 1. 异步函数就是携程coroutine
 2. 函数前面加上 async 就是异步函数, 函数里面可以使用 await
 3. await 后面必须跟一个 awaitable 类型或者具有 __await__ 属性的 对象.

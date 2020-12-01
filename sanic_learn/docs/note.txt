@@ -33,6 +33,17 @@ https://juejin.im/post/6844903944666218509
 
 
 
+官方文档
+https://sanic-cn.readthedocs.io/zh/latest/sanic/logging.html
+
+日志使用
+https://www.cnblogs.com/crazymagic/articles/8744944.html
+
+
+
+
+
+
 
 
 

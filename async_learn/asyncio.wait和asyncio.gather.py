@@ -24,12 +24,10 @@ async def do_something(number):
     return number
 
 
-""" ============================ wait """
-'''
+""" ============================ wait
 async def wait(fs, *, loop=None, timeout=None, return_when=ALL_COMPLETED):
 return_when 包含 FIRST_COMPLETED, FIRST_EXCEPTION, ALL_COMPLETED
-
-'''
+"""
 
 
 async def run_wait():
@@ -52,7 +50,10 @@ def main_wait():
     loop.run_until_complete(run_wait())
 
 
-""" ============================ gather """
+""" ============================ gather 
+def gather(*coros_or_futures, loop=None, return_exceptions=False):
+    return_exceptions: 返回异常, False抛出异常, True继续执行将异常当作结果返回
+"""
 
 
 async def run_gather():

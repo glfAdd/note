@@ -1,0 +1,114 @@
+1. --------------------------------------------------------------------------
+修改root密码
+sudo su
+passwd
+
+2. --------------------------------------------------------------------------
+阿里源
+
+官网地址
+https://developer.aliyun.com/mirror/fedora?spm=a2c6h.13651102.0.0.3e221b11dbgPNJ
+
+1. 备份
+mv /etc/yum.repos.d/fedora.repo /etc/yum.repos.d/fedora.repo.backup
+mv /etc/yum.repos.d/fedora-updates.repo /etc/yum.repos.d/fedora-updates.repo.backup
+
+2. 
+wget -O /etc/yum.repos.d/fedora.repo http://mirrors.aliyun.com/repo/fedora.repo
+wget -O /etc/yum.repos.d/fedora-updates.repo http://mirrors.aliyun.com/repo/fedora-updates.repo
+或者
+curl -o /etc/yum.repos.d/fedora.repo http://mirrors.aliyun.com/repo/fedora.repo
+curl -o /etc/yum.repos.d/fedora-updates.repo http://mirrors.aliyun.com/repo/fedora-updates.repo
+
+3.  生成缓存
+dnf clean all        
+dnf makecache
+
+3. -------------------------------------------------------------------------- RPMFusion 软件库
+由于版权问题，许多软件在Fedora中是没有的，如果我们想安装，我们需要添加或安装库，RPM Fusion是最好的，有两个RPM Fusion提供：免费和非免费。
+RPMFusion清华源网址: https://mirror.tuna.tsinghua.edu.cn/help/rpmfusion/
+rpm下载地址: https://rpmfusion.org/Configuration
+
+[root@localhost]/home/glfadd/Downloads# dnf install rpmfusion-free-release-33.noarch.rpm   
+[root@localhost]/home/glfadd/Downloads# dnf install rpmfusion-nonfree-release-33.noarch.rpm
+
+4. --------------------------------------------------------------------------
+dng install dkms kernel-devel kernel-headers gcc-c++ cmake
+dnf install vim htop ibus-rime util-linux-user smplayer
+
+
+
+5. -------------------------------------------------------------------------- docker ce
+官网不支持最新33
+https://zhuanlan.zhihu.com/p/161777725
+
+sudo dnf remove docker-*
+sudo dnf config-manager --disable docker-*
+sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
+sudo dnf install moby-engine docker-compose
+sudo systemctl enable docker
+
+普通用于可以运行docker
+sudo groupadd docker
+#将当前登录用户加入到docker用户组中
+sudo usermod -aG docker $USER
+#更新用户组
+newgrp docker
+
+
+-------------------------------------------------------------------------- submit text
+sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg 
+sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+sudo dnf install sublime-text
+
+
+
+
+
+-------------------------------------------------------------------------- 虚拟机
+
+(p386learn) ➜  Downloads sudo dnf install libSDL-1.2.so.0                         
+
+
+
+sudo dnf -y install @development-tools
+sudo dnf -y install kernel-headers kernel-devel dkms elfutils-libelf-devel qt5-qtx11extras
+ 
+
+
+-------------------------------------------------------------------------- 美化
+状态栏
+dash-to-dock
+
+-------------------------------------------------------------------------- nvidia
+sudo dnf install --nogpgcheck https://mirrors.tuna.tsinghua.edu.cn/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.tuna.tsinghua.edu.cn/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+
+dnf remove xorg-x11-drv-nouveau
+dracut /boot/initramfs-$(uname -r).img $(uname -r) --force
+grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+
+
+
+
+dnf install freeglut libX11-devel libXmu-devel libXi-devel
+dnf install akmod-nvidia nvidia-driver nvidia-settings nvidia-xconfig
+sudo dnf install akmod-nvidia
+
+
+sudo nvidia-xconfig
+
+如果执行nvidia-xconfig 后无法进入桌面就删除 rm -rf /etc/X11/xorg.conf 然后重启
+
+
+
+
+
+-------------------------------------------------------------------------- TODO
+
+
+https://www.cnblogs.com/zjutzz/p/4675230.html
+
+manjaro kde
+https://www.jianshu.com/p/21c39bc4dd31
+

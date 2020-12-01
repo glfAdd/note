@@ -121,6 +121,16 @@ docker network create --subnet=172.18.0.0/16 mynetwork
 docker run --net mynetwork --ip 172.18.0.10 --name redis -p 6379:6379 -d redis:latest
 ```
 
+##### 普通用于可以运行docker
+
+```
+sudo groupadd docker
+#将当前登录用户加入到docker用户组中
+sudo usermod -aG docker $USER
+#更新用户组
+newgrp docker
+```
+
 # Docker
 
 ##### apt-get
