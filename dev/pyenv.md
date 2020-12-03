@@ -136,9 +136,10 @@ python -m pip install --upgrade --force pip
 [root@localhost .pip]# vim pip.conf
 添加
 [global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+index-url = https://mirrors.aliyun.com/pypi/simple
 [install]
-trusted-host = https://pypi.tuna.tsinghua.edu.cn
+trusted-host = https://mirrors.aliyun.com
+
 
 项目安装psycopg2失败需要安装
 yum install libjpeg libjpeg-devel zlib zlib-devel freetype freetype-devel lcms lcms-devel

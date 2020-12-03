@@ -90,8 +90,10 @@ Kafka 中默认的消费位移的提交方式为自动提交, 不是每消费一
 
 Asynckafka (速度快, 星星少, 没有连接池)
 https://jmf-mordis.github.io/asynckafka/installation.html#install-asynckafka-package
-安装
+安装依赖
 apt-get install librdkafka-dev
+yay -S librdkafka
+安装
 $ pip install asynckafka
 
 

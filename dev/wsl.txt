@@ -80,9 +80,14 @@ update-rc.d ssh enable              设为开机启动
 官网地址
 https://pypi.org/project/mysqlclient/
 
-sudo apt-get install python-dev default-libmysqlclient-dev # Debian / Ubuntu
-sudo yum install python-devel mysql-devel # Red Hat / CentOS
-brew install mysql-client # macOS (Homebrew)
+# Debian / Ubuntu
+sudo apt-get install python-dev default-libmysqlclient-dev
+# Red Hat / CentOS
+sudo yum install python-devel mysql-devel
+# macOS (Homebrew)
+brew install mysql-client
+# manjaro
+yay -S python-mysqlclient
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - oh-my-zsh
 ***问题***
