@@ -116,9 +116,9 @@ docker run -itd --name test1 --network bridge --ip 172.17.0.10 centos:latest /bi
 
 
 1. 创建自定义网络(设置固定ip)
-docker network create --subnet=172.18.0.0/16 mynetwork
+docker network create --subnet=172.19.0.0/16 mynetwork
 2. 创建docker容器, 使用自定义网络
-docker run --net mynetwork --ip 172.18.0.10 --name redis -p 6379:6379 -d redis:latest
+docker run --net mynetwork --ip 172.19.0.10 --name redis -p 6379:6379 -d redis:latest
 ```
 
 ##### 普通用于可以运行docker
@@ -182,8 +182,8 @@ docker top mysql8
 docker pull mysql
 docker pull mysql:5.7.25
 # 创建并启动一个MySQL容器
-docker run --net mynetwork --ip 172.18.0.14 --name mysql7 -e MYSQL_ROOT_PASSWORD=asdf123456 -p 3306:3306 -d mysql:5.7.25
-docker run --net mynetwork --ip 172.18.0.14 --name mysql8 -e MYSQL_ROOT_PASSWORD=asdf123456 -p 3307:3307 -d mysql
+docker run --net mynetwork --ip 172.19.0.14 --name mysql7 -e MYSQL_ROOT_PASSWORD=asdf123456 -p 3306:3306 -d mysql:5.7.25
+docker run --net mynetwork --ip 172.19.0.14 --name mysql8 -e MYSQL_ROOT_PASSWORD=asdf123456 -p 3307:3307 -d mysql
 
 docker run -itd --name mysql7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=asdf123456 mysql:5.7.25
 # 进入容器
@@ -230,7 +230,7 @@ set character_set_client=utf8;
 
 ```python
 docker pull redis
-docker run --net mynetwork --ip 172.18.0.10 --name redis -p 6379:6379 -d redis:latest
+docker run --net mynetwork --ip 172.19.0.10 --name redis -p 6379:6379 -d redis:latest
     
 mac客户端
 https://github.com/luin/medis
@@ -240,7 +240,7 @@ https://github.com/luin/medis
 
 ```
 docker pull zookeeper
-docker run --net mynetwork --ip 172.18.0.11 --name zookeeper --restart always -p 2181:2181 -d zookeeper 
+docker run --net mynetwork --ip 172.19.0.11 --name zookeeper --restart always -p 2181:2181 -d zookeeper 
 ```
 
 ##### kafka
@@ -249,7 +249,7 @@ docker run --net mynetwork --ip 172.18.0.11 --name zookeeper --restart always -p
 参考
 https://juejin.im/entry/6844903829624848398
 
-docker run  -d --net mynetwork --ip 172.18.0.12 --name kafka -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=172.18.0.11:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.18.0.12:9092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -t wurstmeister/kafka
+docker run  -d --net mynetwork --ip 172.19.0.12 --name kafka -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=172.19.0.11:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.19.0.12:9092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -t wurstmeister/kafka
 
 测试
 1. 进入docker
@@ -346,9 +346,9 @@ docker run --name jms_all -d -p 8030:80 -p 8020:2222 jumpserver/jms_all:latest
 
 ```
 docker pull harisekhon/hbase
-docker run -d --net mynetwork --ip 172.18.0.13 --name hbase1 -P harisekhon/hbase
+docker run -d --net mynetwork --ip 172.19.0.13 --name hbase1 -P harisekhon/hbase
 
 浏览器打开页面
-http://172.18.0.13:16010/master-status
+http://172.19.0.13:16010/master-status
 ```
 

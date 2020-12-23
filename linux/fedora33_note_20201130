@@ -7,7 +7,7 @@ passwd
 阿里源
 
 官网地址
-https://developer.aliyun.com/mirror/fedora?spm=a2c6h.13651102.0.0.3e221b11dbgPNJ
+https://developer.aliyun.com/mirror/fedora
 
 1. 备份
 mv /etc/yum.repos.d/fedora.repo /etc/yum.repos.d/fedora.repo.backup

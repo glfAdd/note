@@ -109,6 +109,7 @@ https://pypi.org/project/aiokafka/
 
 
 
+https://github.com/edenhill/librdkafka
 
 
 

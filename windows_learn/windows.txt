@@ -8,7 +8,9 @@ https://newsupport.lenovo.com.cn/driveList.html?fromsource=driveList&selname=%E6
 参考: https://www.jianshu.com/p/50993df76b1c
 命令安装在: C:\Users\lg\scoop\apps
 
-1. 在 PowerShell 中输入下面内容，保证允许本地脚本的执行：
+0. 打开windows powershell
+
+1. 在 PowerShell 中输入下面内容，保证允许本地脚本的执行, 选择"全部"
 set-executionpolicy remotesigned -scope currentuser
 
 2. 执行下面的命令安装 Scoop：
@@ -54,6 +56,7 @@ scoop config aria2-min-split-size 1M
 
 5. 添加仓库
 scoop bucket add extras
+# 第三方软件源bucket
 scoop bucket add scoopbucket https://github.com/yuanying1199/scoopbucket
 scoop bucket add versions
 
@@ -236,3 +239,25 @@ cscript //nologo ospp.vbs /sethst:%KMS_Sev% >nul&echo ==========================
 cscript //nologo ospp.vbs /act | find /i "successful" && (echo 已完成，按任意键退出) || (echo 连接KMS服务器失败! 试图连接到另一个… & echo 请等待... & echo. & echo. & set /a i+=1 & goto server)
 pause >nul
 exit
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - docker (系统不支持不安装)
+1. Windows10家庭版添加Hyper-V的方法: 将下面的内容复制到编辑器或者记事本当中, 保存为Hyper-V.cmd, 以管理员身份运行
+
+pushd "%~dp0"
+dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum >hyper-v.txt
+for /f %%i in ('findstr /i . hyper-v.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
+del hyper-v.txt
+Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL
+
+重启以后设置里搜索"windows功能"看是否安装成功
+
+安装问题:
+Docker Desktop requires Windows 10 Pro/Enterprise (15063+) or Windows 10 Home (19018+).
+
+解决办法:
+# 查看系统版本
+Get-WmiObject -Class Win32_OperatingSystem | % Caption
+# 查看详细版本号
+Get-WmiObject -Class Win32_OperatingSystem | % Buildnumber
+
+netsh winsock reset

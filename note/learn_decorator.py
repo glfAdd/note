@@ -12,31 +12,35 @@ from functools import wraps
   - 插入日志
 """
 
-""" ============================ functools.wraps 
+print(""" ============================ 不使用装饰器 """)
+
+
+def test_1():
+    print('run test_1')
+
+
+def test_2(func):
+    print('run test_2 ')
+
+    def test_3():
+        print('run test_3')
+        func()
+
+    return test_3
+
+
+a = test_2(test_1)
+a()
+
+print(""" ============================ 代码执行时间装饰器 """)
+"""
+functools.wraps
 作用: 不改变使用装饰器原有函数的结构(如__name__, __doc__,__module__)
 """
 
 
-def user_login_data(f):
-    # 由此函数使用装饰器时, 函数__name__被装饰器改变
-    @wraps(f)
-    def wrapper(*args, **kwargs):
-        return f(*args, **kwargs)
-
-    return wrapper
-
-
-@user_login_data
-def num():
-    pass
-
-
-print(num.__name__)
-
-""" ============================ 代码执行时间装饰器 """
-
-
 def timeit(func):
+    # 由此函数使用装饰器时, 函数__name__被装饰器改变
     @wraps(func)
     def wrapper(*args, **kwargs):
         start = time.time()
@@ -49,13 +53,14 @@ def timeit(func):
 
 # 只要解释器执行到这里就会自动进行装饰, 不是等到调用函数时才装饰
 @timeit
-def f():
+def f(number):
+    print(number)
     time.sleep(1)
 
 
-f()
+f(100.21)
 
-""" ============================ 多个装饰器 """
+print(""" ============================ 多个装饰器 """)
 
 
 def out_2(fn):
@@ -87,25 +92,7 @@ def func_1():
 
 print(func_1())
 
-""" ============================ 通用装饰器 """
-
-
-def out_4(fn):
-    def in_3(*args, **kwargs):
-        a = fn(*args, **kwargs)
-        return a
-
-    return in_3
-
-
-@out_4
-def func_2():
-    pass
-
-
-func_2()
-
-""" ============================ 带有参数的装饰器 """
+print(""" ============================ 带有参数的装饰器 """)
 
 
 def out_5(arg):
@@ -122,7 +109,7 @@ def out_5(arg):
 
 
 # 1.先执行out_5("装饰器参数")这个函数返回in_5引用
-# 2.再使用@out_5对函数out_5_3进行装饰
+# 2.再使用@out_5对函数int_5进行装饰
 @out_5("装饰器参数")
 def func_3():
     pass
@@ -130,7 +117,8 @@ def func_3():
 
 func_3()
 
-""" ============================ 类做装饰器 
+print(""" ============================ 类做装饰器 """)
+"""
 1. Class1做装饰器先创建Class1的实例对象, 并把函数引用func_4当做参数传递__init__中, __func指向这个函数
 2. func_4指向了Class1的实例对象
 3. func_4()相当于让实例对象执行(), 会调用__call__方法

@@ -27,7 +27,7 @@ pool = happybase.ConnectionPool(
     size=3,
     host='172.18.0.13',
     # 表的命名空间
-    table_prefix='test_1',
+    # table_prefix='test_1',
 )
 with pool.connection() as connection:
     print(connection.tables())
@@ -160,6 +160,6 @@ if __name__ == '__main__':
     # create_table()
     # delete_table()
     # get_table_inf()
-    insert_row()
+    # insert_row()
     # delete()
-    # get_row()
+    get_row()
