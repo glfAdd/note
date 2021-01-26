@@ -160,7 +160,12 @@ chrome -> 退出前提示
 Command+Shift+G
 ```
 
+##### curl: (7) Failed to connect to raw.githubusercontent.com port 443: Connectio问题
 
+```
+网站 https://www.ipaddress.com/ 的查看域名的ip raw.githubusercontent.com
+添加进hosts
+```
 
 
 

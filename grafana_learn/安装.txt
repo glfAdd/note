@@ -1,0 +1,19 @@
+docker 安装
+https://www.voidking.com/dev-docker-grafana/
+docker run -d --name=grafana -p 3000:3000 grafana/grafana
+
+
+登录页面
+http://localhost:3000/login
+系统默认用户名和密码为admin/admin
+
+
+使用:
+https://www.cnblogs.com/wt869054461/p/11929171.html
+https://www.cnblogs.com/wt869054461/p/11929171.html
+mysql
+添加数据源 data sources, 配置的时候 mysql 的 host 不要写成错
+添加仪表盘
+
+
+
