@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-16">
     <file url="file://$PROJECT_DIR$/dev/pycharm.txt" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/ml_learn/overview.py" charset="GBK" />
     <file url="file://$PROJECT_DIR$/mysql_learn/python连接库.py" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/mysql_learn/主从设置.py" charset="GBK" />
     <file url="file://$PROJECT_DIR$/mysql_learn/数据库优化.py" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/mysql_learn/源码安装.py" charset="GBK" />
     <file url="file://$PROJECT_DIR$/scrapy_learn/base.py" charset="GBK" />
     <file url="file://$PROJECT_DIR$/scrapy_learn/learn_scrapy.py" charset="GBK" />
     <file url="file://$PROJECT_DIR$/scrapy_learn/learn_scrapy_settings.py" charset="GBK" />
     <file url="file://$PROJECT_DIR$/scrapy_learn/learn_scrapyd.py" charset="GBK" />
     <file url="file://$PROJECT_DIR$/scrapy_learn/learn_scrapydweb.py" charset="GBK" />
+    <file url="PROJECT" charset="GBK" />
   </component>
 </project>

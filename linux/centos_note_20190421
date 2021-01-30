@@ -263,24 +263,6 @@ openvpn glf.ovpn
 
 
 **************************************************
-anaconda
-
-清华镜像
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --set show_channel_urls yes
-
-conda --version
-conda info --envs
-conda create --name aaa python=2.7
-conda activate aaa
-deactivate aaa
-conda remove --name aaa --al
-
-conda list
-conda install numpy
-anaconda search -t conda XXXXX
-anaconda show XXXXX
-**************************************************
 查看开机时间
 systemd-analyze blame|head
 systemd-analyze blame

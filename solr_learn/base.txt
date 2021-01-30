@@ -1,0 +1,50 @@
+教程:
+https://www.w3cschool.cn/solr_doc/solr_doc-7kpw2jt1.html
+
+
+
+
+控制台页面
+http://localhost:8983/solr
+
+
+
+Solr是一个Java Web应用, HTTP 是客户端和服务之间通信的基本协议
+
+使用 wt 参数指定相应的格式
+
+
+
+
+创建核心
+solr create -c <name>
+
+
+
+
+
+
+详细教程
+https://blog.csdn.net/weixin_37581297/article/details/86571986
+
+
+
+配置文件
+docker 环境的配置文件地址
+/opt/solr-8.7.0/server/solr
+
+
+
+主目录: server/solr
+
+
+ 简书教程
+https://www.jianshu.com/p/b1b82b242f2d
+https://www.jianshu.com/p/5ad6bfced8dd
+https://www.jianshu.com/p/5fdc87754a6a?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
+
+
+
+
+* 原理和使用
+https://cloud.tencent.com/developer/article/1625102

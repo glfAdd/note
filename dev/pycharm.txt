@@ -7,7 +7,6 @@ v：variable 变量
 f：function 函数
 
 
-
 vim插件
 ideavim
 
@@ -21,23 +20,16 @@ http://color-themes.com/?view=index
 setting->Override default fonts by
 
 
-字体
-File==>settings
-Editor ==> Colors & Fonts ==> Font
-
-
 快捷键
 http://yangfangs.github.io/wiki/pycharm-Shortcut-key/
 运行
 
 
-不能输入中文
+linux 不能输入中文
 在pycharm安装包中，bin目录下的pycharm.sh文件中开头加入
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-
-
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 显示py文件的class 和 method
 
@@ -53,6 +45,3 @@ F11 在鼠标的位置增加对勾, 在Favorites中增加
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 修改host
 0.0.0.0 account.jetbrains.com
 0.0.0.0 www.jetbrains.com
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

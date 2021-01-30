@@ -24,7 +24,6 @@ class Role(db.Model):
     #   第一个参数表示这个关系的另一端是哪个模型
     #   backref: 向User模型添加了一个role数据属性, 从而定义反向关系. 这一属性可替代role_id访问Role模型, 此时获取的是模型对象, 而不是外键的值.
     users = db.relationship('User', backref='role')
-z
     def __repr__(self):
         """非必须, 用于在调试或测试时, 返回一个具有可读性的字符串表示模型."""
         return '<Role %r>' % self.name

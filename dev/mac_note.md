@@ -2,6 +2,11 @@
 
 ```
 sudo spctl --master-disable
+
+10.15系统 新版本中可能失效使用下面方法
+sudo xattr -rd com.apple.quarantine 空格 软件的路径
+例如
+sudo xattr -rd com.apple.quarantine /Applications/App\ UninstalIer.app
 ```
 
 ##### 加载ntfs

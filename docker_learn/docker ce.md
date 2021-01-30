@@ -352,3 +352,23 @@ docker run -d --net mynetwork --ip 172.19.0.13 --name hbase1 -P harisekhon/hbase
 http://172.19.0.13:16010/master-status
 ```
 
+##### solr
+
+```
+安装教程
+https://blog.csdn.net/weixin_43452866/article/details/84842231
+
+docker run --name solr -d -p 8983:8983 -t solr
+
+
+创建core:
+docker exec -it --user=solr solr bin/solr create_core -c mycore
+
+控制台
+http://localhost:8983/solr/#/
+
+
+
+
+```
+
