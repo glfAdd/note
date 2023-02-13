@@ -1,0 +1,64 @@
+
+JMS 队列
+
+
+
+==================================== 提交
+消费位移是存储在Kafka内部的主题 __consumer_offsets 中。把消费位移存储起来（持久化）的动作称为 “提交” ，消费者在消费完消息之后需要执行消费位移的提交
+
+offset 提交的两种方式
+1. 自动提交:
+Kafka 中默认的消费位移的提交方式为自动提交, 不是每消费一条消息就提交一次，而是定期提交，默认5秒. 消费者每隔5秒会将拉取到的每个分区中最大的消息位移进行提交
+问题: 无法做到精确的位移管理, 会重复消费和消息丢失
+
+2. 手动提交
+关闭自动提交
+
+同步提交: 阻塞线程, 可以指定提交的偏移量区间
+异步提交:
+同步和异步组合提交: 先同步提交, 如果失败再异步提交
+
+
+
+
+
+
+
+，这个由消费者客户端参数 enable.auto.commit 配置，默认值为 true
+，这个定期的周期时间由客户端 auto.commit.interval.ms 配置
+
+
+
+==================================== python库
+
+Asynckafka (速度快, 星星少, 没有连接池)
+https://jmf-mordis.github.io/asynckafka/installation.html#install-asynckafka-package
+安装依赖
+apt-get install librdkafka-dev
+yay -S librdkafka
+安装
+$ pip install asynckafka
+
+
+
+aiokafka (用这个, 有连接池)
+pip install aiokafka
+https://pypi.org/project/aiokafka/
+
+
+
+
+
+
+
+
+https://github.com/edenhill/librdkafka
+
+
+
+
+
+
+
+
+

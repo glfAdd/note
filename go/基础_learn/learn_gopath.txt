@@ -1,0 +1,7 @@
+gvm 管理的go环境
+GOPATH="/home/glfadd/.gvm/pkgsets/go1.15/global"
+GOPROXY="https://mirrors.aliyun.com/goproxy/"
+GOROOT="/home/glfadd/.gvm/gos/go1.15"
+
+
+

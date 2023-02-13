@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Index{% endblock %}
+{% block extCSS %}
+    {{ super() }}
+    <style>
+        .test{color: red;}
+    </style>
+{% endblock %}
+{% block header %}<p>header</p>{% endblock %}
+{% block content %}<p>content</p>{% endblock %}
+{% block footer %}<p>footer</p>{% endblock %}

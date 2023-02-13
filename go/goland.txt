@@ -1,0 +1,2 @@
+问题1: import github 的库无法跳转
+setting -> Go Modules(vgo) -> 勾选 Enable Go Modules(vgo) integration

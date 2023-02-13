@@ -1,0 +1,216 @@
+------------------------------------------ U盘安装过程中卡死
+1. install ubuntu的页面按“e”， 
+2. 将quiet splash 改为, quiet spl
+3. F10 保存
+4. 再进行安装
+
+------------------------------------------ 在安装完ubuntu双系统后，第一次启动ubuntu系统时，卡死在启动界面（或者黑屏）
+1.（如果已经卡死了，则强制关机）开机；
+2.（在选择系统的界面）选择ubuntu高级选项，回车；
+3.（在出现的两个模式中）选择恢复（recovery）模式，回车；
+4.（在出现的众多选项中）选择grub，回车（你能看到貌似很牛逼的一行行代码跑过）；
+5.（上面的代码跑完之后应该能重新回到众多选项的界面）选择resume，回车进入系统。
+
+
+永久修改
+1.修改/etc/default/grub文件
+在打开的文件中，将其中的quiet splash修改为quiet splash nomodeset并保存;
+2.更新修改完的grub：
+sudo update-grub
+------------------------------------------ 20.04换阿里源
+https://blog.csdn.net/wangyijieonline/article/details/105360138
+
+
+cp -ra /etc/apt/sources.list /etc/apt/sources.list.bak
+vim /etc/apt/sources.list
+
+deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+
+------------------------------------------ aptitude
+apt-get install aptitude
+
+aptitude update		更新可用的包列表	
+aptitude safe-upgrade		执行一次安全的升级	
+aptitude full-upgrade		将系统升级到新的发行版	
+aptitude install pkgname	安装包	
+aptitude remove pkgname	删除包	
+aptitude purge pkgname		删除包及其配置文件	
+aptitude search string		搜索包	
+aptitude show pkgname		显示包的详细信息	
+aptitude clean			删除下载的包文件	
+aptitude autoclean		仅删除过期的包文件
+------------------------------------------
+aptitude install terminator htop vim zsh git smplayer treez
+
+------------------------------------------ ibus rimes 
+apt-get install ibus-rime
+
+ibus restart
+
+系统配置位于 /usr/share/rime-data
+用户配置位于 ~/.config/ibus/rime (优先级高)
+ibus-rime 还会在启动时执行一次「部署」，根据原始配置和补丁文件，编译一份合并之后的配置（以及编译出来的二进制词库），放在 ~/.config/ibus/rime/build 目录里
+
+
+目录结构
+    default.yaml —— 各方案共享的全局配置
+    default.custom.yaml —— （可选）对 default.yaml 的「补丁」
+    XXX.schema.yaml —— XXX 输入方案的配置
+    XXX.custom.yaml —— （可选）对 XXX.schema.yaml 的「补丁」
+    XXX.dict.yaml —— XXX 输入方案的词库（字典）
+
+
+使用ctrl切换输入法: 修改 /usr/share/rime-data/default.yaml文件
+ascii_composer:
+  good_old_caps_lock: true
+  switch_key:
+    Shift_L: noop
+    Shift_R: noop
+    Control_L: commit_text
+    Control_R: commit_text
+    Caps_Lock: clear
+    Eisu_toggle: clear
+
+------------------------------------------ google chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+双击安装
+
+------------------------------------------ oh my zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+主题使用 
+------------------------------------------ sublime text
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+aptitude install apt-transport-https
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+aptitude update
+aptitude install sublime-text
+
+
+------------------------------------------ sublime-merge
+aptitude install sublime-merge
+ 
+------------------------------------------ 美化
+apt-get install chrome-gnome-shell
+
+------------------------------------------ virtualbox
+aptitude install virtualbox virtualbox-ext-pack
+aptitude install virtualbox-guest-dkms
+aptitude install virtualbox-guest-additions-iso
+
+使用教程
+http://www.zhuangjiba.com/soft/10350.html
+
+------------------------------------------ python开发环境
+# 添加源
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --set show_channel_urls yes
+
+------------------------------------------ docker ce
+aptitude install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get update 
+aptitude install docker-ce docker-ce-cli containerd.io
+
+国内源
+# vim /etc/docker/daemon.json
+{
+  "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn/"]
+}
+
+
+systemctl status docker
+service docker start
+service docker restart
+
+------------------------------------------ github 问题
+Connecting to raw.github.com (raw.github.com)|151.101.228.133|:443... failed: Connection refused.
+
+1. 通过IPAddress.com首页,输入raw.githubusercontent.com查询到真实IP地址
+2. vim /etc/hosts 添加
+151.101.76.133 raw.githubusercontent.com
+
+------------------------------------------ nvidia
+系统IDE安装不好用
+
+# 安装驱动
+ubuntu-drivers autoinstall
+
+# vim /etc/modprobe.d/blacklist-nouveau.conf 添加
+blacklist nouveau
+options nouveau modeset=0
+
+# vim /etc/modprobe.d/blacklist.conf 添加
+blacklist nouveau
+options nouveau modeset=0
+
+reboot
+
+
+# 查看驱动是否禁用
+# lsmod | grep nouveau
+# nvidia-settings 
+# nvidia-xconfig (不要运行)
+# reboot
+
+1. 问题
+使用 ubuntu-drivers autoinstall 安装以后网线,wifi,蓝牙都不能使用
+解决办法:
+可能是更新的内核, 但内核驱动不全, 换回以前的内核
+	开机时选择高级 --> 选择内核版本
+------------------------------------------ bashtop
+https://github.com/aristocratos/bashtop
+
+git clone https://github.com/aristocratos/bashtop.git
+cd bashtop
+sudo make install
+
+------------------------------------------ redis-desktop-manager
+网址
+https://snapcraft.io/redis-desktop-manager
+
+sudo snap install redis-desktop-manager
+
+------------------------------------------ linux ssh 客户端
+wget www.hostbuf.com/downloads/finalshell_install_linux.sh
+chmod +x finalshell_install_linux.sh
+./finalshell_install_linux.sh
+------------------------------------------ 桌面创建快捷方式
+在 /usr/share/applications目录下创建 aaa.desktop 文件
+
+[Desktop Entry]
+Name=pycharm
+Exec=/home/glfadd/application/pycharm/bin/pycharm.sh
+Type=Application
+Icon=/home/glfadd/application/pycharm/bin/pycharm.png
+Categories=Utility;TextEditor;
+StartupNotify=false
+Terminal=false
+
+------------------------------------------
+
+------------------------------------------
+
+------------------------------------------
+
+------------------------------------------ 
+
+
+
+
+
+
+
+

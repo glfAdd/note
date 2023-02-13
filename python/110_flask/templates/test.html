@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="/static/js/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript">
+
+        function myFirst() {
+            $.ajax({
+                url: '/',
+                type: 'post',
+                dataType: 'json',
+                data: {'aa': 1}
+            })
+                .done(function (data) {
+                })
+                .fail(function () {
+                    alert('服务器超时，请重试！');
+                })
+                .success(
+                    alert('success')
+                )
+                .error(
+                    alert('error')
+                )
+            ;
+        }
+
+    </script>
+</head>
+<body>
+<input type="text" name="" id="input01">
+<button onclick="myFirst()">见证奇迹</button>
+<ul id="list01">
+</ul>
+</body>
+</html>

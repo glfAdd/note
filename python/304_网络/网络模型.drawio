@@ -1,0 +1,196 @@
+<mxfile host="65bd71144e">
+    <diagram id="jClCDkFuXlwsBZGfU6mE" name="第 1 页">
+        <mxGraphModel dx="1913" dy="944" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="7 应用层 application" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="240" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="6 表示层 presentation" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="280" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="5 会话层 session" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="320" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="4 传输层 transport" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="360" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="3 网络层 network" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="400" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="2 数据链路层 data link" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="440" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="1 物理层 physical" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="480" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="OSI 7层模型" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="120" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="应用层 application" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="240" width="160" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="传输层 transport" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="360" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="网络层 internet" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="400" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="数据链路层 data link" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="440" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="TCP/IP 5层模型" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="120" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="为应用程序提供服务" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="240" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="数据格处理, 加密, 解密" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="280" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="控制网路层和物理层通信" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="440" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="建立，管理, 维护会话" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="320" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="建立，管理和维护端到端的连接" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="360" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="IP选址和路由选择" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="400" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="传输比特流" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="480" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="报文 (mesage)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="240" width="160" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="段 (segemnt)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="360" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="分组 (packet)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="400" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="帧 (frame)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="440" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="PDU 数据单元&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="120" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="比特 (bit)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="480" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="CRC" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="1130" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="Data" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="1130" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="Type" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="1130" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="SMAC" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="1130" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" value="DMAC" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="1130" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="62" value="CRC" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="1170" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="Data" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="1170" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="64" value="Length" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="1170" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" value="SMAC" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="1170" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" value="DMAC" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="1170" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" value="应用层 application" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="760" y="240" width="160" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="传输层 transport" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="760" y="360" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="网络层 internet" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="760" y="400" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="网络接口层 network access" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="760" y="440" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="TCP/IP 4层模型" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="760" y="120" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="物理层 physical" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="560" y="480" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" value="协议" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="920" y="120" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="FTP, HTTP, DNS, SMTP, NFS" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="920" y="240" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" value="TCP, UDP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="920" y="360" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" value="IP, ICMP, ARP, RARP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="920" y="400" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="HDLC, PPP, SLIP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="920" y="440" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="没协议" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="920" y="280" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="80" value="没协议" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="920" y="320" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" value="数据" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1560" y="240" width="80" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="93" value="数据" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1560" y="360" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="94" value="TCP 包头部" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1480" y="360" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="95" value="IP 包头部" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1400" y="400" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="97" value="数据" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1560" y="400" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="98" value="TCP 包头部" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1480" y="400" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="99" value="IP 包头部" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1400" y="440" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="100" value="以太包头部" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1320" y="440" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" value="数据" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1560" y="440" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="102" value="TCP 包头部" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1480" y="440" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" value="0101010100101010101010101010010101" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1320" y="480" width="320" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" value="TCP/IP 数据实例" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1320" y="120" width="320" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="105" value="分&lt;br&gt;割&lt;br&gt;线" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="500" y="40" width="40" height="640" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
