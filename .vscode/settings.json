@@ -1,5 +1,11 @@
 {
+<<<<<<< HEAD
         // "python.defaultInterpreterPath": "/home/glfadd/miniconda3/envs/p392_test/bin/python",
         "python.formatting.provider": "black",
         "python.analysis.typeCheckingMode": "basic",
+=======
+    "files.associations": {
+        "iostream": "cpp"
+    }
+>>>>>>> 818cca971e58d7f9127e9afb28c06354fbb84c72
 }
