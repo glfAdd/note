@@ -1,6 +1,4 @@
 """
-如果__new__() 创建的是当前类的实例，会自动调用__init__()函数，通过return调用的__new__()的参数cls来保证是当前类实例，如果是其他类的类名，那么创建返回的是其他类实例，就不会调用当前类的__init__()函数。
-
 执行过程:
 1. Tom('Tom', 12) 执行类 Tom 的 __new__ 方法, 并调 super(Tom, cls).__new__(cls), 返回一个实例
 2. 用实例调用 __init__ 初始化
@@ -21,7 +19,6 @@ class Tom(Person):
     # 2. 必须有返回值, 返回实例对象. 如果不 return 就不会调用 __init__ 方法
     # 3. 可以 return 父类或 __new__ 一个实例
     # 4. 子类没有定义 __new __ 时, 会自动调用父类的 __new__, 直到 object 的 __new__
-    # cls 是类
     def __new__(cls, name, age):
         print('run Tom __new__')
         return super(Tom, cls).__new__(cls)

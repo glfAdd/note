@@ -1,14 +1,21 @@
 # coding=utf-8
 """
-Python2.x默认都是经典类，只有显式继承了object才是新式类
-class Person(object):pass
-class Person():pass
-class Person:pass
+Python 2
+默认都是经典类, 只有显式继承了object才是新式类
+    class Person(object):
+    class Person():
+    class Person:
 
-Python3.x取消了经典类，默认都是新式类，并且不必显式的继承object, (三种写法并无区别, 推荐第一种)
-class Person(object):pass
-class Person():pass
-class Person:pass
+
+Python 3
+所有的类都是新式类 (因为所有类都继承自 object, 即使没有显示继承)
+三种写法并无区别
+    class Person(object):
+    class Person():
+    class Person:
+
+
+
 """
 
 """ ============================ 继承搜索的顺序发生了改变 
