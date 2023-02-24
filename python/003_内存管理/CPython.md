@@ -181,6 +181,15 @@ static PyMemAllocatorEx _PyMem_Raw = {
 ```
 1. 避免频繁地申请、释放内存空间(malloc 与 free)导致性能降低;
 2. 避免频繁分配与释放小块的内存会产生内存碎片导致降低内存利用效率	
+
+Python 对象都有一个引用计数器，当引用计数为0时，被引用的 Python 对象就会从堆内存中被释放
+Python 任何低于 512 字节对象的内存释放，并没有将内存空间返回给操作系统的虚拟内存管理器(VVM)，而是将使用过的内存块返回给内存池，并由内存池的头部字段 freeblock 指针重新指向该内存块。
+
+
+内存池初始化位于堆内存中
+堆内存向高地址端增长
+
+
 ```
 
 ##### 堆内存模型
@@ -229,6 +238,18 @@ block (块)
  *      505-512                 512                      63
 ```
 
+##### pool 状态
+```
+Using (使用中) : 池内只要有 1 个块已分配, 就是 Using. 初始化的内存池的状态就是 Using
+Full (满载): 池内所有块正在使用, 此时 nextoffset > maxnextoffset
+Free (未使用)
+
+
+当 pool 状态为 fulled 时, 默认 python 内存分配器会执行两个动作:
+    1. 先用内存池双重链表查找其他可用池返, 回未使用的内存块
+    2. 如果当前内存池链表所有内存池都耗尽, 就要求arenas对象向第1层的PyMem函数接口分配更多的对内村给 arenas对象，并创建新的内存池
+```
+
 ##### pool (池)
 
 ```c
@@ -245,7 +266,198 @@ struct pool_header {
 };
 
 typedef struct pool_header *poolp;
+
+
+block* pool_init(poolp pool,uint szidx){
+    block* bp;// 
+    uint size=0;
+    
+    pool->ref.count=1
+    pool->szidx = szidx;
+    size = INDEX2SIZE(szidx);
+    bp = (block *)pool + POOL_OVERHEAD;
+    pool->nextoffset = POOL_OVERHEAD + (size << 1);
+    pool->maxnextoffset = POOL_SIZE - size;
+    pool->freeblock = bp + size;
+    //构建 freeblock 链表头(尾)
+    *(block **)(pool->freeblock) = NULL;
+
+    return bp;
+}
 ```
+
+##### pool 连续分配内存
+
+![pool内存池连续分配内存动画](.\image\pool内存池连续分配内存动画.gif)
+
+
+
+##### 内存池满载
+
+![pool池满载状态](.\image\pool池满载状态.webp)
+
+##### 内存池回收块
+
+```
+1. 实质上是单链表表头插入元素的算法
+2. freeblock 指针所指向的内存块一直都位于链表的头部, 内存的分配的时间开销始终为O(1), 返回链表首部的内存块即可
+```
+
+例如: 内存池有 5 个内存块正在使用，假设调用 pymalloc_free 释放内存块 Py3 再释放 Py2
+
+```
+如下图
+当回收 Py3 内存块时, pymalloc_free 会将当前池 freeblock 所指向的内存指针，保存到一个临时指针变量 lastfree
+```
+
+![pool释放块1](.\image\pool释放块1.webp)
+
+```
+1. freeblock 指向 Py3 块地址
+2. pool->freeblock 将 Py3 块 8字节所有二进制都设为 0
+3. Py3 指向 lastfree 指向的地址
+```
+
+![pool释放块1](.\image\pool释放块2.webp)
+
+```
+回收 Py2 内存块时, pymalloc_free 会将当前池 freeblock 所指向的内存指针，保存到一个临时指针变量 lastfree
+```
+
+![pool释放块1](.\image\pool释放块3.webp)
+
+```
+1. freeblock 指向 Py2 块
+2. pool->freeblock 将 Py2 块 8字节所有二进制都设为 0
+3. Py2 指向 lastfree 指向的地址(即 Py3 块地址)
+```
+
+![pool释放块1](.\image\pool释放块4.webp)
+
+
+
+
+
+##### Arean 对象
+
+- Arenas 对象
+
+```c
+//定义Arena的内存尺寸
+#define ARENA_SIZE              (256 << 10)     /* 256KB */
+
+struct arena_object {
+    uintptr_t address; // arena对象的地址，由malloc分配
+    block* pool_address; // 指向可用内存池的对齐指针(首个字节)
+    uint nfreepools; // arena对象托管 256KB 空间中可用的内存池的数量
+    uint ntotalpools; // arena 中的内存池总数（无论是否可用）
+    struct pool_header* freepools; // 可用池的单链接列表
+
+    /*
+     * 只要此arena_object不与已分配的arena关联，
+     * nextarena成员就用于链接单链接的“ unused_arena_objects”
+     * 列表中所有未关联的arena_object。 
+     * 在这种情况下，prevarena成员未使用。
+     *
+     * 当此arena_object与具有至少一个可用池的已分配arena相关联时，
+     * 两个成员都在双向链接的“ usable_arenas”列表中使用，
+     * 该列表按nfreepools值的升序进行维护。
+     */
+    struct arena_object* nextarena;
+    struct arena_object* prevarena;
+};
+```
+
+- 使用以下这些变量跟踪 arena 对象
+
+```c
+static struct arena_object* arenas = NULL; // 用于跟踪内存块（区域）的对象数组
+static uint maxarenas = 0; // 当前 arenas 数组中的 arena 对象的数量
+static struct arena_object* unused_arena_objects = NULL; // arena_objects.未使用的arena对象的单链表头部
+static struct arena_object* usable_arenas = NULL; // 与具有可用池的arenas关联的arena_object的双向链表，链表两端以NULL终止
+static struct arena_object* nfp2lasta[MAX_POOLS_IN_ARENA + 1] = { NULL }; // nfp2lasta[nfp] is the last arena in usable_arenas with nfp free pools
+
+/* How many arena_objects do we initially allocate?
+ * 16 = can allocate 16 arenas = 16 * ARENA_SIZE = 4MB before growing the
+ * `arenas` vector.
+ */
+#define INITIAL_ARENA_OBJECTS 16
+```
+
+##### arena 对象的初始化过程
+
+```
+执行python命令时，python内部默认会连续初始化7个arena对象
+在 CPython 源码文件 Objects/obmalloc.c 中插入 printf 函数, 重新编译再运行, 查看输出
+```
+
+<video src=".\image\arena 初始化过程1.mp4"></video>
+
+```
+调用下面这些函数
+	new_arena 是第 2 层的函数
+	PyMem_RawRealloc 和 _PyMem_RawRealloc 都第 1 层的函数接口
+```
+
+<img src=".\image\arena 初始化过程2.webp" alt="arena 初始化过程2" style="zoom:100%;" />
+
+```
+arena 对象向 C 底层申请的堆内存空间是连续的
+arena 申请的内存是上一次的 2 倍
+第一次申请 16×sizeof 的空间, 申请的堆内存是连续的, 可以容纳 16 个 arena_object 结构体, 下一次的申请量就是 32×sizeof, 容纳 32 个 arena_object 结构体
+```
+
+<img src=".\image\arena 初始化过程3.webp" alt="arena 初始化过程3" style="zoom:80%;" />
+
+
+
+```
+1. arenas 数组管理新创建的 arena 对象
+2. 新创建的 arena 对象将 address 字段做 0 初始化, 用于标识每个新增的 arena 对象未被关联
+3. 未关联的 arena 对象表示该 arena 对象还没被使用, 用 unused_arena_objects 单向链表管理这些未使用的 arena 对象
+```
+
+<img src=".\image\arena 初始化过程4.webp" alt="arena 初始化过程4" style="zoom:80%;" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
