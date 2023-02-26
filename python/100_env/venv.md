@@ -376,12 +376,24 @@ mktmpenv：创建临时运行环境
 
 # virtualenvwrapper-win
 
+##### 安装
+
 ```
 pip install virtualenvwrapper-win
 
 安装在
 C:\Users\username\Envs
+~\Envs
 ```
+
+##### 命令
+
+```
+mkvirtualenv -p C:\opt\python-3.11.2\python.exe p3112-test
+mkvirtualenv -p C:\opt\python-3.10.10\python.exe p31010-test
+```
+
+
 
 ##### 删除环境是禁止访问
 
