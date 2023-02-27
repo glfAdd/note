@@ -3,4 +3,5 @@
         "python.defaultInterpreterPath": "~\\Envs\\p31010-test\\Scripts\\python.exe",
         "python.formatting.provider": "black",
         "python.analysis.typeCheckingMode": "basic",
+        "java.compile.nullAnalysis.mode": "automatic",
 }
