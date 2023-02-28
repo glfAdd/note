@@ -1,9 +1,3 @@
-a = []
-for i in range(3):
-    def func(x):
-        return x * i
-
-    a.append(func)
-
-for j in a:
-    print(j)
+import sys
+a = 10
+print(sys.getrefcount(a))

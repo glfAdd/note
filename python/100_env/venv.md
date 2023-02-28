@@ -376,11 +376,14 @@ mktmpenv：创建临时运行环境
 
 # virtualenvwrapper-win
 
+##### 安装
+
 ```
 pip install virtualenvwrapper-win
 
 安装在
-C:\Users\xxxxx\Envs
+C:\Users\username\Envs
+~\Envs
 ```
 
 ##### 命令
