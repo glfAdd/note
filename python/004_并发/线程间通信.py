@@ -3,7 +3,7 @@ from threading import Thread
 import time
 
 """
-Queue拥有所有需要的锁, 可以安全在任意多个线程间共享, 被所有线程共享
+Queue 拥有所有需要的锁, 可以安全在任意多个线程间共享, 被所有线程共享
 """
 
 
