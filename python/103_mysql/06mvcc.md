@@ -139,7 +139,6 @@ https://blog.csdn.net/Waves___/article/details/105295060
 > 详细参考 https://zhuanlan.zhihu.com/p/453169285
 
 ```
-
 mysql 有独立的表空间存储 undo log
 8.0 版本 InnoDB 默认有 2 个 undo tablespace, 也可以使用 CREATE UNDO TABLESPACE 语句动态添加, 最大128个
 每个 undo tablespace 至多有 TRX_SYS_N_RSEGS(128) 个回滚段
@@ -163,7 +162,7 @@ mysql 有独立的表空间存储 undo log
   - Delete undo log: 删除记录时, 把这条记录中的内容都记下来，回滚时把由这些内容组成的记录插入到表中. 删除操作都只是设置记录的DELETED_BIT，并不真正将过时的记录删除。 为了节省磁盘空间，InnoDB 有专门的 purge 线程来清理 DELETED_BIT 为 true 的记录。为了不影响MVCC的正常工作，purge线程自己也维护了一个read view, 如果某个记录的DELETED_BIT为true，并且DB_TRX_ID相对于purge线程的read view可见，那么这条记录一定是可以被安全清除的。
 
 ```
-undo log实际上就是存在rollback segment中旧记录链，
+undo log实际上就是存在 rollback segment 中旧记录链，
 ```
 
 ##### 创建数据
