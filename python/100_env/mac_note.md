@@ -1,20 +1,34 @@
+##### mac 目录结构
+
+```
+* /bin 传统unix命令的存放目录，如ls，rm，mv等。
+* /sbin 传统unix管理类命令存放目录，如fdisk，ifconfig等等。
+* /usr 第三方程序安装目录。
+* /usr/bin, /usr/sbin, /usr/lib，其中/usr/lib目录中存放了共享库（动态链接库）。
+* /etc. 标准unix系统配置文件存放目录，如用户密码文件/etc/passwd。此目录实际为指向/private/etc的链接。
+* /dev 设备文件存放目录，如何代表硬盘的/dev/disk0。
+* /tmp 临时文件存放目录，其权限为所有人任意读写。此目录实际为指向/private/tmp的链接。
+* /var 存放经常变化的文件，如日志文件。此目录实际为指向/private/var的链接。
+* /Applications 应用程序目录，默认所有的GUI应用程序都安装在这里；
+* /Library 系统的数据文件、帮助文件、文档等等；
+* /Network 网络节点存放目录；
+* /System 他只包含一个名为Library的目录，这个子目录中存放了系统的绝大部分组件，如各种framework，以及内核模块，字体文件等等。
+* /Users 存放用户的个人资料和配置。每个用户有自己的单独目录。
+* /Volumes 文件系统挂载点存放目录。
+* /cores 内核转储文件存放目录。当一个进程崩溃时，如果系统允许则会产生转储文件。
+* /private 里面的子目录存放了/tmp, /var, /etc等链接目录的目标目录。
+* /installer.failurerequests 可能是用来记录发生crash时的日志
+
+
+源代码手动安装的问题件在此目录下: /usr/local/software/
+```
+
 # etc
 
 ##### 修改 hostname
 
 ```
 sudo scutil --set HostName XXX
-```
-
-##### xxx.app已损坏,打不开.你应该将它移到废纸篓
-
-```
-sudo spctl --master-disable
-
-10.15系统 新版本中可能失效使用下面方法
-sudo xattr -rd com.apple.quarantine 空格 软件的路径
-例如
-sudo xattr -rd com.apple.quarantine /Applications/App\ UninstalIer.app
 ```
 
 ##### 加载ntfs
@@ -64,20 +78,6 @@ fg 把当前终端后台后台运行的拿到前台运行
 
 ```
 sudo nvram AutoBoot=%00
-```
-
-##### brew切换国内源
-
-```
-# 替换brew.git: 
-cd "$(brew --repo)" 
-git remote set-url origin https://mirrors.ustc.edu.cn/brew.git 
-
-# 替换homebrew-core.git: 
-cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core" 
-git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
-
-brew update
 ```
 
 ##### docker
@@ -140,13 +140,51 @@ sudo dd if=/Users/glfadd/Downloads/ubuntu-20.04.2.0-desktop-amd64.iso of=/dev/di
 $ xcode-select --install
 ```
 
-##### 升级系统python
+
+
+# mac 2023.05.11
+
+##### brew
+
+```bash
+# github 下载速速慢, 使用加速源安装
+# 选择第 3 个，速度快
+/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
+```
+
+##### 升级系统 python
 
 ```bash
 $ brew reinstall python
+
+
+brew install cmake ; brew install libevent ; brew install mandoc ; brew install libcbor ; brew install libfido2 ; brew install zlib ; brew install lz4 ; brew install zstd
 ```
 
+##### 常用软件
 
+```bash
+brew install wget
+```
+
+##### xxx.app 文件损坏,打不开.你应该将它移到废纸篓
+
+```bash
+sudo xattr -r -d com.apple.quarantine /Applications/gridsutra.app
+```
+
+##### oh my zsh
+
+```bash
+# 使用加速源
+sh -c "$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh)"
+```
+
+#####
+
+```
+添加 -> 选择 "remote" -> github 地址 https://raw.hellogithub.com/hosts
+```
 
 
 

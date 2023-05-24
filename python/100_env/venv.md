@@ -112,10 +112,16 @@ $ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 # linux
 创建并添加 ~/.pip/pip.conf
 
-[global]
+[global] (弃用)
 index-url = https://pypi.mirrors.ustc.edu.cn/simple/
 [install]
 trusted-host = https://pypi.mirrors.ustc.edu.cn/
+
+
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple/
+[install]
+trusted-host = https://pypi.tuna.tsinghua.edu.cn/
 ```
 
 # pyenv
@@ -696,26 +702,23 @@ $ MACOSX_DEPLOYMENT_TARGET=10.7 python setup.py install
   $ pip install psycopg
   ```
 
-##### mysqldb
+##### Pip mysqlclient
 
 https://pypi.org/project/mysqlclient/
 
-```
-mysqlclient安装
-
-centos7
-先安装依赖
+```bash
+# centos7
 yum install mysql-devel
-在安装
 pip install mysqlclient
 
-mac 安装
-brew install mysql-connector-c
-brew install mariadb
-pip install mysqlclient
+# mac 安装
+$ brew install cmake ; brew install libevent ; brew install mandoc ; brew install libcbor ; brew install libfido2 ; brew install zlib ; brew install lz4 ; brew install zstd
+$ brew install mysql-connector-c
+$ brew install mariadb
+$ pip install mysqlclient
 
 
-debian
+# debian
 apt-get install default-libmysqlclient-dev build-essential
 ```
 

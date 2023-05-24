@@ -1,6 +1,8 @@
 # 安装
 
 > [镜像网站](https://hub.docker.com/)
+>
+> [下载](https://www.docker.com/get-started/)
 
 ##### centos
 
@@ -56,8 +58,10 @@ apt-get install docker-ce docker-ce-cli containerd.io
 ##### 安装速度慢
 
 ```
-修改该 hosts
+brew install docker --cask
 
+
+修改该 hosts
 108.157.150.30 download.docker.com
 ```
 
@@ -196,6 +200,17 @@ docker cp /root/init.sh  CS5_AS_EALL1:/home/hundsun/workspace/log
 # 镜像
 
 ##### mysql
+
+```
+docker pull mysql:5.7.42
+
+docker run --name mysql-test -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:5.7.42
+
+
+
+```
+
+
 
 ```python
 docker pull mysql
