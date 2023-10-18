@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment #deployment 为副本控制器
+metadata:
+  name: flask02
+  labels:
+    versions: v1.3
+  namespace: glf-test
+  annotations:
+    create_user: glfAdd
+spec:
+  replicas: 2
+  selector: #标签选择器
+    matchLabels:
+      app: flask111
+  template:
+    metadata:
+      labels:
+        app: flask111
+    spec:
+      nodeName: cn-shenzhen.172.16.4.128
+      containers:
+        - name: glf-flask-test
+          lifecycle:
+            postStart:
+              exec:
+                command: ['sh']
+                args:
+                - 'c'
+                - |
+                  curl -X POST -H 'Content-type:application/json' -d '{"pod_ip": "'$POD_IP'","pod_name": "'$POD_NAME'","pod_namespace": "'$POD_NAMESPACE'"}' 'http://172.16.4.201:5000/action'
+            preStop:
+              exec:
+                command: ['sh']
+                args:
+                - 'c'
+                - |
+                  curl -X POST -H 'Content-type:application/json' -d '{"pod_ip": "'$POD_IP'","pod_name": "'$POD_NAME'","pod_namespace": "'$POD_NAMESPACE'"}' 'http://172.16.4.201:5000/action'
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          image: 123123123123123123.aliyuncs.com/namespace1/registry1:flask-test-v6.0
+          # 资源限制
+          resources:
+            limits:
+              memory: "300Mi"
+              cpu: "1"
+            requests:
+              memory: "300Mi"
+              cpu: "1"
+          ports:
+            - containerPort: 5000
+              protocol: TCP

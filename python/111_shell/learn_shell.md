@@ -1,32 +1,18 @@
-```
-#!/bin/sh
-#!/bin/bash
-```
+##### 区别
 
-> \#! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种 Shell
->
-> echo 命令用于向窗口输出文本(相当于 print)
+使用 `POSIX` 后, 当某行代码出错时，不继续往下解释
 
-```shell
-#!/bin/bash
-echo "Hello World !"
-```
+`/bin/sh` 默认开启 `POSIX`, 脚本中间发生错误会终止脚本的运行，不再运行下面的代码
+
+`/bin/bash` 默认没开启 `POSIX`, 脚本中间即使发生错误，依然会继续向下运行
+
+ `#!/bin/sh` 与  `#!/bin/bash --posix` 效果相同
 
 ##### 运行
 
-- 方式1: 作为可执行程序. 一定要写成 ./test.sh，而不是 test.sh，运行其它二进制的程序也一样，直接写 test.sh，linux 系统会去 PATH 里寻找有没有叫 test.sh 的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里
+使用 `sh test.sh` 运行脚本, 即使在脚本中指定了 `#!/bin/bash` 仍然是使用 `#!/bin/sh` 执行, 相当于是使用 `#!/bin/bash --posix`
 
-```shell
-chmod +x ./test.sh
-./test.sh
-```
-
-- 方式2: 作为解释器参数. 直接运行解释器，其参数就是 shell 脚本的文件名. 不需要在第一行指定解释器信息，写了也没用。
-
-```
-/bin/sh test.sh
-/bin/php test.php
-```
+`chmod u+x test.sh;./test.sh` 这种执行方式会按照脚本第一行指定的 shell 执行
 
 ## 变量
 

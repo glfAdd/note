@@ -88,6 +88,13 @@ $ yum install python-devel python3-devel
   $ pip3 install --upgrade pip
   ```
 
+##### 报错
+
+```
+1. 安装依赖
+2. 切换到 gcc8
+```
+
 # pip
 
 ##### pip 参数
@@ -239,11 +246,24 @@ pyenv versions
 ```
 wget https://registry.npmmirror.com/-/binary/python/3.7.10/Python-3.7.10.tar.xz
 wget https://registry.npmmirror.com/-/binary/python/3.9.16/Python-3.9.16.tar.xz
+wget https://registry.npmmirror.com/-/binary/python/3.11.3/Python-3.11.3.tar.xz
 
 *.tar.xz
 创建目录放安装文件 ~/.pyenv/cache
 使用 pyenv install 2.7.16 查看下载文件的目录, 并用wget下载
 安装 pyenv install 2.7.16
+```
+
+# pip
+
+> --user 安装在 /root/.local/bin
+
+```bash
+# python2
+$ yum install python-pip
+
+# python3
+$ yum install python3-pip
 ```
 
 # venv
@@ -702,7 +722,7 @@ $ MACOSX_DEPLOYMENT_TARGET=10.7 python setup.py install
   $ pip install psycopg
   ```
 
-##### Pip mysqlclient
+##### pip mysqlclient
 
 https://pypi.org/project/mysqlclient/
 
@@ -720,6 +740,15 @@ $ pip install mysqlclient
 
 # debian
 apt-get install default-libmysqlclient-dev build-essential
+```
+
+##### pip upgrade 失败
+
+```bash
+$ pip install --upgrade pip
+
+$ python -m pip install --upgrade --force pip 
+$ pip install setuptools==33.1.1
 ```
 
 

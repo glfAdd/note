@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment #deployment 为副本控制器
+metadata:
+  name: flask02
+  labels:
+    versions: v1.3
+  namespace: glf-test
+  annotations:
+    create_user: glfAdd
+spec:
+  replicas: 2
+  selector: #标签选择器
+    matchLabels:
+      app: flask111
+  template:
+    metadata:
+      labels:
+        app: flask111
+    spec:
+      nodeName: cn-shenzhen.172.16.4.128
+      containers:
+        - name: glf-flask-test
+          image: 123123123123123123.aliyuncs.com/namespace1/registry1:flask-test-v1.0
+          ports:
+            - containerPort: 5000
+              protocol: TCP

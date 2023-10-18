@@ -132,6 +132,20 @@ sudo dd if=/Users/glfadd/Downloads/ubuntu-20.04.2.0-desktop-amd64.iso of=/dev/di
 4. 等待一段时间, 有格式化提示表示完成
 ```
 
+##### Google Authenticator 二次验证登录
+
+```bash
+# 下载 sshpass.rb 文件
+$ wget https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
+# 用 sshpass.rb 文件安装 sshpass
+$ brew install sshpass.rb
+
+
+
+```
+
+
+
 # development
 
 ##### 安装 xcode 工具
@@ -151,6 +165,41 @@ $ xcode-select --install
 # 选择第 3 个，速度快
 /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
 ```
+
+##### 国内源
+
+```bash
+
+# 查看 brew.git 当前源
+$ cd "$(brew --repo)" && git remote -v
+origin    https://github.com/Homebrew/brew.git (fetch)
+origin    https://github.com/Homebrew/brew.git (push)
+ 
+# 查看 homebrew-core.git 当前源
+$ cd "$(brew --repo homebrew/core)" && git remote -v
+origin    https://github.com/Homebrew/homebrew-core.git (fetch)
+origin    https://github.com/Homebrew/homebrew-core.git (push)
+ 
+# 修改 brew.git 为阿里源
+$ git -C "$(brew --repo)" remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git
+ 
+# 修改 homebrew-core.git 为阿里源
+$ git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git
+ 
+# zsh 替换 brew bintray 镜像
+$ echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles' >> ~/.zshrc
+$ source ~/.zshrc
+ 
+# bash 替换 brew bintray 镜像
+$ echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles' >> ~/.bash_profile
+$ source ~/.bash_profile
+ 
+# 刷新源
+$ brew update
+
+```
+
+
 
 ##### 升级系统 python
 

@@ -944,6 +944,20 @@ scp work@192.168.0.10:/home/work/source.txt work@192.168.0.11:/home/work/
 scp -r /home/work/sourcedir work@192.168.0.10:/home/work/
 ```
 
+##### curl
+
+```bash
+
+
+curl -s --head http://www.baidu.com | head -n 1 | grep "HTTP/1.[01] [23].."
+curl -s -m 1 -IL -X 'POST' http://www.baidu.com
+
+
+
+-s: 静默模式，进度条和错误信息都不显示
+-m: max-time，本次请求的最长时间
+```
+
 
 
 ##### PATH

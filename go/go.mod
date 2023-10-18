@@ -1,5 +1,5 @@
-module go_learn
+module code
 
-go 1.15
+go 1.20
 
-require github.com/go-sql-driver/mysql v1.5.0 // indirect
+require k8s.io/client-go v0.27.3 // indirect
