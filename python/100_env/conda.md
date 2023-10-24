@@ -1,18 +1,20 @@
+### 安装
+
 [download page](https://docs.conda.io/en/latest/miniconda.html)
 
 ##### conda 国内源
 
-```
+```bash
 源的配置文件保存位置: 用户目录下 .condarc 文件
 
 # 重置源配置
-conda config --remove-key channels
+$ conda config --remove-key channels
 
 # 添加源
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --set show_channel_urls yes
+$ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+$ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+$ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+$ conda config --set show_channel_urls yes
 ```
 
 ##### pip 国内源
@@ -31,12 +33,21 @@ trusted-host = https://pypi.tuna.tsinghua.edu.cn
 
 ##### 命令
 
+```bash
+$ conda --version
+$ conda upgrade conda				更新conda
+$ conda activate p392_lean
+$ conda env list
+$ conda create -n 被创建的环境名 python=被创建的环境的版本号
+$ conda create --name 被创建的环境名 --clone 被复制的环境名
+$ conda remove -n 要删除的环境名 --all
+$ conda activate 要激活的环境名
+$ conda list
+$ conda search 要查询的包名
+$ conda install 要安装的包名=要安装的包版本
 ```
-conda upgrade conda				更新conda
-conda create -n p392_lean python=3.9.2
 
-conda activate p392_lean
-```
+### 问题
 
 ##### 问题 1
 
