@@ -96,7 +96,27 @@ git submodule update
   git push origin :refs/tags/v1.0-beta 
   ```
 
-  
+
+##### ClashX 代理设置
+
+网页可以打开 github ,但 git clone 没有使用代理
+
+```bash
+# 配置socks5代理
+$ git config --global http.proxy socks5 127.0.0.1:7890
+$ git config --global https.proxy socks5 127.0.0.1:7890
+# 配置http代理
+$ git config --global http.proxy 127.0.0.1:7890
+$ git config --global https.proxy 127.0.0.1:7890
+# 查看代理命令
+$ git config --global --get http.proxy
+$ git config --global --get https.proxy
+# 取消代理命令
+$ git config --global --unset http.proxy
+$ git config --global --unset https.proxy
+```
+
+
 
 
 

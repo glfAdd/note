@@ -139,13 +139,14 @@ trusted-host = https://pypi.tuna.tsinghua.edu.cn/
 $ dnf install gcc gcc-c++ glibc glibc-devel libffi-devel sqlite-devel bzip2-devel bzip2 readline-devel openssl-devel bzip2-devel make zlib zlib-devel patch lzma xz-devel
 ```
 
-##### 依赖 - mac
+##### mac
 
 ```bash
-# 升级系统python
-$ brew reinstall python
-$ brew install zlib openssl
+$ brew install pyenv
+$ brew install pyenv-virtualenv
 ```
+
+
 
 ##### 依赖 - ubuntu
 
