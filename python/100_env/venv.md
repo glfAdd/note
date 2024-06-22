@@ -255,6 +255,24 @@ wget https://registry.npmmirror.com/-/binary/python/3.11.3/Python-3.11.3.tar.xz
 安装 pyenv install 2.7.16
 ```
 
+##### 问题 1
+
+```
+报错信息:
+Failed to activate virtualenv.
+
+Perhaps pyenv-virtualenv has not been loaded into your shell properly.
+Please restart current shell and try again.
+
+
+解决办法:
+.zshrc 文件中添加
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+```
+
+
+
 # pip
 
 > --user 安装在 /root/.local/bin
